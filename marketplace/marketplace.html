@@ -461,6 +461,70 @@
         </div>
 
 
+
+
+        <!-- =========================
+             POST ITEM MODAL
+        ========================== -->
+        <div class="overlay hidden" id="postOverlay">
+            <div class="post-sheet" role="dialog" aria-modal="true" aria-labelledby="postTitle">
+                <div class="sheet-handle"></div>
+                <div class="sheet-header">
+                    <h2 id="postTitle">Post an Item</h2>
+                    <button id="closePost" type="button" aria-label="Close">×</button>
+                </div>
+
+                <form id="postForm" class="post-form">
+                    <label for="postImage">Image</label>
+                    <input id="postImage" name="image" type="file" accept="image/*">
+                    <div class="image-preview hidden" id="imagePreviewWrap">
+                        <img id="imagePreview" alt="Listing preview">
+                    </div>
+
+                    <label for="postName">Item name</label>
+                    <input id="postName" name="name" type="text" maxlength="60" placeholder="e.g. Calculus Textbook" required>
+
+                    <div class="form-two-col">
+                        <div>
+                            <label for="postPrice">Price</label>
+                            <input id="postPrice" name="price" type="number" min="1" step="1" placeholder="500" required>
+                        </div>
+                        <div>
+                            <label for="postCondition">Condition</label>
+                            <select id="postCondition" name="condition">
+                                <option>New</option>
+                                <option selected>Used</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="postCategory">Category</label>
+                    <select id="postCategory" name="category">
+                        <option>Books</option>
+                        <option>Electronics</option>
+                        <option>Uniforms</option>
+                        <option>Supplies</option>
+                        <option>Sports</option>
+                        <option>Furniture</option>
+                        <option>Accessories</option>
+                        <option>Others</option>
+                    </select>
+
+                    <label for="postLocation">Meet-up / location</label>
+                    <input id="postLocation" name="location" type="text" maxlength="60" placeholder="Near Library" required>
+
+                    <label for="postDescription">Description</label>
+                    <textarea id="postDescription" name="description" rows="4" maxlength="500" placeholder="Tell buyers about the item..."></textarea>
+
+                    <label for="postSeller">Seller name</label>
+                    <input id="postSeller" name="seller" type="text" maxlength="40" placeholder="Your name" required>
+
+                    <button class="primary-button" type="submit">Publish listing</button>
+                </form>
+            </div>
+        </div>
+
+
         <!-- =========================
              TOAST
         ========================== -->

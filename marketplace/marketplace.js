@@ -132,6 +132,16 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
 
+    // Restore listings created in this browser.
+    const savedListings = JSON.parse(
+        localStorage.getItem("campusMarketplaceListings") || "[]"
+    );
+
+    if (Array.isArray(savedListings)) {
+        savedListings.forEach(item => products.push(item));
+    }
+
+
     /* =====================================
        STATE
     ====================================== */
@@ -239,6 +249,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const toast =
         document.getElementById("toast");
+
+    const postOverlay =
+        document.getElementById("postOverlay");
+
+    const closePost =
+        document.getElementById("closePost");
+
+    const postForm =
+        document.getElementById("postForm");
+
+    const postImage =
+        document.getElementById("postImage");
+
+    const imagePreviewWrap =
+        document.getElementById("imagePreviewWrap");
+
+    const imagePreview =
+        document.getElementById("imagePreview");
 
 
     /* =====================================
@@ -1180,11 +1208,17 @@ document.addEventListener("DOMContentLoaded", () => {
         checkout.addEventListener(
             "click",
             () => {
-
-                showToast(
-                    "Checkout will be available soon."
+                const confirmed = window.confirm(
+                    `Demo checkout\n\nTotal: ${formatPrice(total)}\n\nIn the real app, this would open the seller/pickup confirmation.`
                 );
 
+                if (!confirmed) return;
+
+                cart = [];
+                saveCart();
+                updateCartCount();
+                renderCart();
+                showToast("Demo order confirmed");
             }
         );
 
@@ -1722,16 +1756,91 @@ document.addEventListener("DOMContentLoaded", () => {
        SELL BUTTON
     ====================================== */
 
-    sellButton.addEventListener(
-        "click",
-        () => {
+    /* =====================================
+       POST AN ITEM
+    ====================================== */
 
-            showToast(
-                "Post Item will be available soon."
-            );
+    function openPostItem() {
+        postForm.reset();
+        imagePreviewWrap.classList.add("hidden");
+        imagePreview.removeAttribute("src");
+        postOverlay.classList.remove("hidden");
+        document.body.classList.add("modal-open");
+    }
 
+    function closePostItem() {
+        postOverlay.classList.add("hidden");
+        document.body.classList.remove("modal-open");
+    }
+
+    sellButton.addEventListener("click", openPostItem);
+    closePost.addEventListener("click", closePostItem);
+    postOverlay.addEventListener("click", event => {
+        if (event.target === postOverlay) closePostItem();
+    });
+
+    postImage.addEventListener("change", () => {
+        const file = postImage.files && postImage.files[0];
+        if (!file) {
+            imagePreviewWrap.classList.add("hidden");
+            return;
         }
-    );
+        const reader = new FileReader();
+        reader.onload = () => {
+            imagePreview.src = reader.result;
+            imagePreviewWrap.classList.remove("hidden");
+        };
+        reader.readAsDataURL(file);
+    });
+
+    postForm.addEventListener("submit", event => {
+        event.preventDefault();
+
+        const formData = new FormData(postForm);
+        const name = String(formData.get("name") || "").trim();
+        const price = Number(formData.get("price"));
+        const location = String(formData.get("location") || "").trim();
+        const seller = String(formData.get("seller") || "").trim();
+
+        if (!name || !Number.isFinite(price) || price <= 0 || !location || !seller) {
+            showToast("Please complete the required fields");
+            return;
+        }
+
+        const image = imagePreview.src || createFallbackImage(formData.get("category"));
+        const newListing = {
+            id: Date.now(),
+            name,
+            price,
+            category: String(formData.get("category")),
+            location,
+            rating: 5.0,
+            condition: String(formData.get("condition")),
+            seller,
+            image,
+            description: String(formData.get("description") || "No description provided.").trim() || "No description provided.",
+            createdByUser: true
+        };
+
+        products.unshift(newListing);
+
+        const userListings = products.filter(item => item.createdByUser);
+        localStorage.setItem("campusMarketplaceListings", JSON.stringify(userListings));
+
+        activeCategory = "All";
+        searchTerm = "";
+        searchInput.value = "";
+        clearSearch.classList.remove("visible");
+        document.querySelectorAll(".category-item").forEach(item => {
+            item.classList.toggle("active", item.dataset.category === "All");
+        });
+
+        closePostItem();
+        renderProducts();
+        showToast("Listing published successfully");
+
+        setTimeout(() => openProduct(newListing.id), 180);
+    });
 
 
     /* =====================================
@@ -1757,6 +1866,12 @@ document.addEventListener("DOMContentLoaded", () => {
             menuOverlay.classList.add(
                 "hidden"
             );
+
+            postOverlay.classList.add(
+                "hidden"
+            );
+
+            document.body.classList.remove("modal-open");
 
         }
     );
