@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="description"
+        content="Campus Marketplace — Buy, Sell, Connect."
+    >
+
+    <title>Campus Marketplace</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================================
+         MOBILE APP CONTAINER
+         ========================================================= -->
+
+    <div class="app">
+
+        <!-- =====================================================
+             TOP HEADER
+             ===================================================== -->
+
+        <header class="mobile-header">
+
+            <a
+                href="#home"
+                class="brand"
+                aria-label="Campus Marketplace"
+            >
+                <span class="brand-campus">CAMPUS</span>
+                <span class="brand-marketplace">MARKETPLACE</span>
+            </a>
+
+            <div class="header-actions">
+
+                <!-- Notifications -->
+                <button
+                    class="header-icon"
+                    id="notificationButton"
+                    type="button"
+                    aria-label="Notifications"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                        ></path>
+
+                        <path
+                            d="M10 21h4"
+                        ></path>
+                    </svg>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <!-- Profile -->
+                <button
+                    class="profile-button"
+                    id="profileButton"
+                    type="button"
+                    aria-label="Profile"
+                >
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.5"
+                        ></circle>
+
+                        <path
+                            d="M5 20c.8-3.8 3.2-5.7 7-5.7s6.2 1.9 7 5.7"
+                        ></path>
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+        <main id="home">
+
+            <!-- =================================================
+                 HERO
+                 ================================================= -->
+
+            <section class="hero">
+
+                <div class="hero-copy">
+
+                    <h1 class="hero-title">
+                        <span class="blue">Buy. Sell. Connect.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Everything you need,<br>
+                        right here on campus.
+                    </p>
+
+                </div>
+
+
+                <!-- Hero illustration -->
+                <div class="hero-illustration">
+
+                    <svg
+                        viewBox="0 0 240 200"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Graduation cap and books"
+                        role="img"
+                    >
+
+                        <!-- Soft background -->
+                        <ellipse
+                            cx="117"
+                            cy="164"
+                            rx="88"
+                            ry="13"
+                            fill="#E8F0FF"
+                        />
+
+                        <!-- Bottom book -->
+                        <path
+                            d="M45 133
+                               L158 121
+                               L184 139
+                               L72 153
+                               Z"
+                            fill="#FFFFFF"
+                            stroke="#1554D1"
+                            stroke-width="3"
+                        />
+
+                        <!-- Bottom book pages -->
+                        <path
+                            d="M47 136
+                               L72 148
+                               L181 135"
+                            fill="none"
+                            stroke="#A9B8D8"
+                            stroke-width="2"
+                        />
+
+                        <!-- Top book -->
+                        <path
+                            d="M42 119
+                               L154 106
+                               L179 124
+                               L68 139
+                               Z"
+                            fill="#FFFFFF"
+                            stroke="#1554D1"
+                            stroke-width="3"
+                        />
+
+                        <!-- Book page lines -->
+                        <path
+                            d="M54 121
+                               L151 110
+                               M57 126
+                               L151 115
+                               M61 131
+                               L154 120"
+                            fill="none"
+                            stroke="#A9B8D8"
+                            stroke-width="1.5"
+                        />
+
+                        <!-- Graduation cap -->
+                        <path
+                            d="M52 75
+                               L117 47
+                               L184 75
+                               L117 102
+                               Z"
+                            fill="#1760D7"
+                            stroke="#073B9B"
+                            stroke-width="3"
+                        />
+
+                        <!-- Cap body -->
+                        <path
+                            d="M75 82
+                               L75 107
+                               C75 122 95 132 117 132
+                               C140 132 160 122 160 107
+                               L160 82
+                               L117 101
+                               Z"
+                            fill="#1554D1"
+                            stroke="#073B9B"
+                            stroke-width="3"
+                        />
+
+                        <!-- Cap highlight -->
+                        <path
+                            d="M84 91
+                               L84 106
+                               C84 116 99 123 117 124"
+                            fill="none"
+                            stroke="#4E86EA"
+                            stroke-width="3"
+                            opacity=".7"
+                        />
+
+                        <!-- Button -->
+                        <ellipse
+                            cx="117"
+                            cy="65"
+                            rx="7"
+                            ry="4"
+                            fill="#FFFFFF"
+                            stroke="#073B9B"
+                            stroke-width="2"
+                        />
+
+                        <!-- Tassel -->
+                        <path
+                            d="M124 67
+                               C144 69 153 73 153 84
+                               L153 105"
+                            fill="none"
+                            stroke="#F2A900"
+                            stroke-width="2"
+                        />
+
+                        <rect
+                            x="148"
+                            y="103"
+                            width="10"
+                            height="25"
+                            rx="5"
+                            fill="#F2A900"
+                            stroke="#073B9B"
+                            stroke-width="2"
+                        />
+
+                        <!-- Plant stem -->
+                        <path
+                            d="M194 135
+                               C193 113 194 94 203 76"
+                            fill="none"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <!-- Leaves -->
+                        <ellipse
+                            cx="201"
+                            cy="94"
+                            rx="8"
+                            ry="13"
+                            transform="rotate(-35 201 94)"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <ellipse
+                            cx="207"
+                            cy="78"
+                            rx="8"
+                            ry="13"
+                            transform="rotate(35 207 78)"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <ellipse
+                            cx="196"
+                            cy="111"
+                            rx="8"
+                            ry="13"
+                            transform="rotate(-35 196 111)"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <ellipse
+                            cx="204"
+                            cy="101"
+                            rx="8"
+                            ry="13"
+                            transform="rotate(35 204 101)"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <!-- Pot -->
+                        <path
+                            d="M186 134
+                               L211 134
+                               L207 158
+                               L190 158
+                               Z"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                        <rect
+                            x="183"
+                            y="130"
+                            width="31"
+                            height="6"
+                            rx="2"
+                            fill="#DCEBFF"
+                            stroke="#1554D1"
+                            stroke-width="2"
+                        />
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 SEARCH
+                 ================================================= -->
+
+            <section class="search-section">
+
+                <form
+                    class="searchbar"
+                    id="searchForm"
+                    role="search"
+                >
+
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="10.8"
+                            cy="10.8"
+                            r="6.8"
+                        ></circle>
+
+                        <path
+                            d="M16 16l5 5"
+                        ></path>
+                    </svg>
+
+                    <label
+                        class="sr-only"
+                        for="searchInput"
+                    >
+                        Search items
+                    </label>
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search items..."
+                        autocomplete="off"
+                    >
+
+                </form>
+
+            </section>
+
+
+            <!-- =================================================
+                 CATEGORIES
+                 ================================================= -->
+
+            <section
+                class="content-section categories-section"
+                id="marketplace"
+            >
+
+                <div class="section-heading">
+
+                    <h2>Categories</h2>
+
+                    <button
+                        class="view-all"
+                        id="clearCategory"
+                        type="button"
+                    >
+                        View all
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="category-grid"
+                    id="categoryGrid"
+                >
+
+                    <button
+                        class="category-card active"
+                        data-category="Books"
+                        type="button"
+                    >
+                        <span class="category-icon books">📚</span>
+                        <span>Books</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Electronics"
+                        type="button"
+                    >
+                        <span class="category-icon electronics">💻</span>
+                        <span>Electronics</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Uniforms"
+                        type="button"
+                    >
+                        <span class="category-icon uniforms">👕</span>
+                        <span>Uniforms</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Supplies"
+                        type="button"
+                    >
+                        <span class="category-icon supplies">🎒</span>
+                        <span>Supplies</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Calculators"
+                        type="button"
+                    >
+                        <span class="category-icon calculators">🧮</span>
+                        <span>Calculators</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Sports"
+                        type="button"
+                    >
+                        <span class="category-icon sports">🏀</span>
+                        <span>Sports</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Furniture"
+                        type="button"
+                    >
+                        <span class="category-icon furniture">🪑</span>
+                        <span>Furniture</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Accessories"
+                        type="button"
+                    >
+                        <span class="category-icon accessories">🎧</span>
+                        <span>Accessories</span>
+                    </button>
+
+
+                    <button
+                        class="category-card"
+                        data-category="Others"
+                        type="button"
+                    >
+                        <span class="category-icon others">•••</span>
+                        <span>Others</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FEATURED ITEMS
+                 ================================================= -->
+
+            <section class="content-section featured-section">
+
+                <div class="section-heading">
+
+                    <h2>Featured Items</h2>
+
+                    <button
+                        class="view-all"
+                        id="featuredViewAll"
+                        type="button"
+                    >
+                        View all
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                ></div>
+
+
+                <div
+                    class="empty-state hidden"
+                    id="emptyState"
+                >
+
+                    <div class="empty-icon">⌕</div>
+
+                    <h3>No matches found</h3>
+
+                    <p>
+                        Try another search or browse all items.
+                    </p>
+
+                    <button
+                        class="clear-button"
+                        id="resetSearch"
+                        type="button"
+                    >
+                        Clear search
+                    </button>
+
+                </div>
+
+
+                <!-- Carousel indicator -->
+                <div class="carousel-dots">
+
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 HOW IT WORKS
+                 ================================================= -->
+
+            <section
+                class="content-section how-section"
+                id="how-it-works"
+            >
+
+                <div class="section-heading">
+
+                    <h2>How it works</h2>
+
+                </div>
+
+
+                <div class="steps-container">
+
+                    <!-- Step 1 -->
+
+                    <article class="step">
+
+                        <div class="step-icon search-step">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <circle
+                                    cx="10"
+                                    cy="10"
+                                    r="6"
+                                ></circle>
+
+                                <path
+                                    d="M15 15l5 5"
+                                ></path>
+                            </svg>
+
+                        </div>
+
+                        <h3>1. Search</h3>
+
+                        <p>
+                            Find items you<br>
+                            need on campus
+                        </p>
+
+                    </article>
+
+
+                    <!-- Arrow -->
+
+                    <div class="step-arrow">
+                        →
+                    </div>
+
+
+                    <!-- Step 2 -->
+
+                    <article class="step">
+
+                        <div class="step-icon connect-step">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <rect
+                                    x="4"
+                                    y="5"
+                                    width="16"
+                                    height="12"
+                                    rx="3"
+                                ></rect>
+
+                                <path
+                                    d="M8 17v3l3-3"
+                                ></path>
+
+                                <circle
+                                    cx="9"
+                                    cy="11"
+                                    r="1"
+                                ></circle>
+
+                                <circle
+                                    cx="15"
+                                    cy="11"
+                                    r="1"
+                                ></circle>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>2. Connect</h3>
+
+                        <p>
+                            Message the seller<br>
+                            and make a deal
+                        </p>
+
+                    </article>
+
+
+                    <!-- Arrow -->
+
+                    <div class="step-arrow">
+                        →
+                    </div>
+
+
+                    <!-- Step 3 -->
+
+                    <article class="step">
+
+                        <div class="step-icon meet-step">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M4 8l8-4 8 4-8 4-8-4z"
+                                ></path>
+
+                                <path
+                                    d="M4 8v8l8 4 8-4V8"
+                                ></path>
+
+                                <path
+                                    d="M12 12v8"
+                                ></path>
+
+                            </svg>
+
+                        </div>
+
+                        <h3>3. Meet</h3>
+
+                        <p>
+                            Meet in a safe<br>
+                            campus location
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =====================================================
+             MOBILE BOTTOM NAVIGATION
+             ===================================================== -->
+
+        <nav
+            class="bottom-navigation"
+            aria-label="Mobile navigation"
+        >
+
+            <!-- Home -->
+
+            <a
+                class="bottom-nav-item active"
+                href="#home"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M3 11.5L12 4l9 7.5"
+                    ></path>
+
+                    <path
+                        d="M5.5 10.5V20h13v-9.5"
+                    ></path>
+
+                    <path
+                        d="M9.5 20v-5h5v5"
+                    ></path>
+                </svg>
+
+                <span>Home</span>
+
+            </a>
+
+
+            <!-- Marketplace -->
+
+            <a
+                class="bottom-nav-item"
+                href="#marketplace"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M4 9h16l-1-4H5z"
+                    ></path>
+
+                    <path
+                        d="M5 9v10h14V9"
+                    ></path>
+
+                    <path
+                        d="M9 19v-5h6v5"
+                    ></path>
+
+                </svg>
+
+                <span>Marketplace</span>
+
+            </a>
+
+
+            <!-- Post -->
+
+            <button
+                class="post-button"
+                id="postButton"
+                type="button"
+                aria-label="Post an item"
+            >
+                +
+            </button>
+
+
+            <!-- Favorites -->
+
+            <a
+                class="bottom-nav-item"
+                href="#favorites"
+                id="favoritesNav"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M20.8 8.7
+                           C20.8 5.7 18.7 4 16.2 4
+                           C14.4 4 12.9 5 12 6.4
+                           C11.1 5 9.6 4 7.8 4
+                           C5.3 4 3.2 5.7 3.2 8.7
+                           C3.2 13.1 8.1 16.4 12 20
+                           C15.9 16.4 20.8 13.1 20.8 8.7Z"
+                    ></path>
+                </svg>
+
+                <span>Favorites</span>
+
+            </a>
+
+
+            <!-- Profile -->
+
+            <a
+                class="bottom-nav-item"
+                href="#profile"
+                id="profileNav"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+                    <circle
+                        cx="12"
+                        cy="7"
+                        r="3"
+                    ></circle>
+
+                    <path
+                        d="M5 20c.7-4 3-6 7-6s6.3 2 7 6"
+                    ></path>
+
+                </svg>
+
+                <span>Profile</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================================
+             TOAST
+             ===================================================== -->
+
+        <div
+            class="toast"
+            id="toast"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+        <!-- =====================================================
+             POST ITEM MODAL
+             ===================================================== -->
+
+        <div
+            class="modal-backdrop"
+            id="modalBackdrop"
+        >
+
+            <div
+                class="modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modalTitle"
+            >
+
+                <div class="modal-handle"></div>
+
+                <h3 id="modalTitle">
+                    Post an item
+                </h3>
+
+                <p>
+                    Share something useful with your campus community.
+                </p>
+
+                <div class="field">
+
+                    <label for="itemName">
+                        Item name
+                    </label>
+
+                    <input
+                        class="input"
+                        id="itemName"
+                        type="text"
+                        placeholder="e.g. Physics textbook"
+                    >
+
+                </div>
+
+                <div class="modal-actions">
+
+                    <button
+                        class="modal-cancel"
+                        id="closeModal"
+                        type="button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="modal-continue"
+                        id="publishButton"
+                        type="button"
+                    >
+                        Continue
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
