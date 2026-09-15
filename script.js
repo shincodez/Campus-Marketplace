@@ -509,7 +509,7 @@ function setupCategories() {
                         item.classList.toggle(
                             "active",
                             item.dataset.category ===
-                            activeCategory
+                                activeCategory
                         );
 
                     }
@@ -1677,8 +1677,8 @@ function openPhase1Panel(content, anchor) {
                     Math.min(
                         left,
                         window.innerWidth -
-                        panelWidth -
-                        16
+                            panelWidth -
+                            16
                     )
                 );
 
@@ -2008,14 +2008,16 @@ function setupNavigation() {
 
                 if (page === "favorites") {
 
-                    showFavorites();
+                    window.location.href =
+                        "favorites/favorites.html";
 
                     return;
                 }
 
                 if (page === "profile") {
 
-                    showProfile();
+                    window.location.href =
+                        "profile/profile.html";
 
                 }
 

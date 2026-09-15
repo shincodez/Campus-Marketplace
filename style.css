@@ -252,7 +252,8 @@ a {
     display: grid;
 
     grid-template-columns:
-        minmax(0, 1fr) 300px;
+        minmax(0, 1fr)
+        300px;
 
     align-items: center;
 
@@ -476,7 +477,7 @@ a {
     width: 100%;
 }
 
-.section+.section {
+.section + .section {
     margin-top: 34px;
 }
 
@@ -1118,7 +1119,8 @@ a {
     align-items: center;
 
     padding:
-        6px 8px calc(6px + env(safe-area-inset-bottom));
+        6px 8px
+        calc(6px + env(safe-area-inset-bottom));
 
     background:
         rgba(255, 255, 255, 0.97);
@@ -1221,7 +1223,8 @@ a {
     background: var(--blue-dark);
 
     transform:
-        translateY(-2px) scale(1.03);
+        translateY(-2px)
+        scale(1.03);
 
     box-shadow:
         0 9px 25px rgba(21, 84, 209, 0.34);
@@ -1291,7 +1294,7 @@ a {
     font-weight: 800;
 }
 
-.modal>p {
+.modal > p {
     margin-bottom: 22px;
 
     color: var(--muted);
@@ -1495,19 +1498,20 @@ a {
         opacity: 0;
 
         transform:
-            translateX(15px) scale(0.97);
+            translateX(15px)
+            scale(0.97);
     }
 
     to {
         opacity: 1;
 
         transform:
-            translateX(0) scale(1);
+            translateX(0)
+            scale(1);
     }
 }
 
 @keyframes capFloat {
-
     0%,
     100% {
         transform: translateY(0);
@@ -1519,7 +1523,6 @@ a {
 }
 
 @keyframes tasselSwing {
-
     0%,
     100% {
         transform: rotate(0deg);
@@ -1561,14 +1564,16 @@ a {
         opacity: 0;
 
         transform:
-            translateY(12px) scale(0.98);
+            translateY(12px)
+            scale(0.98);
     }
 
     to {
         opacity: 1;
 
         transform:
-            translateY(0) scale(1);
+            translateY(0)
+            scale(1);
     }
 }
 
@@ -1586,7 +1591,8 @@ a {
 
     .hero {
         grid-template-columns:
-            minmax(0, 1fr) 230px;
+            minmax(0, 1fr)
+            230px;
     }
 
     .hero-illustration {
@@ -1668,7 +1674,8 @@ a {
         min-height: 190px;
 
         grid-template-columns:
-            minmax(0, 1fr) 132px;
+            minmax(0, 1fr)
+            132px;
 
         gap: 7px;
 
@@ -1729,7 +1736,7 @@ a {
 
     /* Sections */
 
-    .section+.section {
+    .section + .section {
         margin-top: 29px;
     }
 
@@ -1873,7 +1880,8 @@ a {
         min-height: 70px;
 
         padding:
-            4px 6px calc(4px + env(safe-area-inset-bottom));
+            4px 6px
+            calc(4px + env(safe-area-inset-bottom));
     }
 
     .nav-item {
@@ -1911,7 +1919,8 @@ a {
         max-height: 90vh;
 
         padding:
-            24px 20px calc(24px + env(safe-area-inset-bottom));
+            24px 20px
+            calc(24px + env(safe-area-inset-bottom));
 
         border-radius:
             21px 21px 0 0;
@@ -1948,7 +1957,8 @@ a {
 
     .hero {
         grid-template-columns:
-            minmax(0, 1fr) 110px;
+            minmax(0, 1fr)
+            110px;
     }
 
     .hero-content h1 {
@@ -2030,7 +2040,8 @@ a {
 
     .hero {
         grid-template-columns:
-            minmax(0, 1fr) 90px;
+            minmax(0, 1fr)
+            90px;
     }
 
     .hero-content h1 {
@@ -2100,77 +2111,75 @@ select:focus-visible {
 
         transition-duration: 0.01ms !important;
     }
-
     /* ============================================================
    PHASE 1.1 — STICKY HEADER
    Added without changing the existing design
    ============================================================ */
 
-    .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-        transition:
-            height 0.25s ease,
-            box-shadow 0.25s ease,
-            background-color 0.25s ease;
-    }
-
-    /* Header appearance after scrolling */
-    .topbar.scrolled {
-        background: rgba(255, 255, 255, 0.97);
-        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
-
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-    }
-
-    /* Make CAMPUS MARKETPLACE clickable */
-    .brand {
-        cursor: pointer;
-        user-select: none;
-
-        transition:
-            opacity 0.2s ease,
-            transform 0.2s ease;
-    }
-
-    .brand:hover {
-        opacity: 0.85;
-    }
-
-    .brand:active {
-        transform: scale(0.97);
-    }
-
-    /* Keyboard accessibility */
-    .brand:focus-visible {
-        outline: 3px solid rgba(37, 99, 235, 0.3);
-        outline-offset: 5px;
-        border-radius: 6px;
-    }
-
-    /* Mobile */
-    @media (max-width: 768px) {
-
-        .topbar.scrolled {
-            box-shadow: 0 3px 14px rgba(15, 23, 42, 0.07);
-        }
-
-    }
-
-    /* Respect reduced-motion settings */
-    @media (prefers-reduced-motion: reduce) {
-
-        .topbar,
-        .brand {
-            transition: none;
-        }
-
-    }
+    transition:
+        height 0.25s ease,
+        box-shadow 0.25s ease,
+        background-color 0.25s ease;
 }
 
+/* Header appearance after scrolling */
+.topbar.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* Make CAMPUS MARKETPLACE clickable */
+.brand {
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.brand:hover {
+    opacity: 0.85;
+}
+
+.brand:active {
+    transform: scale(0.97);
+}
+
+/* Keyboard accessibility */
+.brand:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.3);
+    outline-offset: 5px;
+    border-radius: 6px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .topbar.scrolled {
+        box-shadow: 0 3px 14px rgba(15, 23, 42, 0.07);
+    }
+
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+
+    .topbar,
+    .brand {
+        transition: none;
+    }
+
+}
+}
 /* =========================================================
    PHASE 1 FINAL ADDITIONS
    Sticky header + interactive header panels + desktop arrows
@@ -2273,7 +2282,7 @@ select:focus-visible {
     background: var(--surface);
 }
 
-.phase1-notification+.phase1-notification {
+.phase1-notification + .phase1-notification {
     margin-top: 8px;
 }
 
@@ -2370,7 +2379,7 @@ select:focus-visible {
     place-items: center;
     border: 1px solid var(--border);
     border-radius: 50%;
-    background: rgba(255, 255, 255, .96);
+    background: rgba(255,255,255,.96);
     color: var(--text);
     box-shadow: var(--shadow-sm);
     font-size: 22px;
@@ -2406,7 +2415,6 @@ body.phase1-panel-open {
         opacity: 0;
         transform: translateY(-5px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2448,5 +2456,95 @@ body.phase1-panel-open {
 
     .phase1-panel {
         animation: none;
+    }
+}
+
+/* =========================================================
+   SHARED MOBILE APP SHELL — PHASE 2 FOUNDATION
+   Keeps Home consistent with the Marketplace screen.
+   ========================================================= */
+:root {
+    --max-width: 430px;
+    --shared-nav-height: 76px;
+}
+
+body {
+    background: #eef1f6;
+}
+
+.app {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 0 16px calc(var(--shared-nav-height) + env(safe-area-inset-bottom) + 12px);
+    background: #ffffff;
+    position: relative;
+}
+
+/* Same bottom-nav geometry as marketplace/marketplace.css */
+.bottom-navigation {
+    width: 100%;
+    max-width: 430px;
+    height: var(--shared-nav-height);
+    min-height: var(--shared-nav-height);
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom));
+    grid-template-columns: 1fr 1fr 1.05fr 1fr 1fr;
+    background: rgba(255,255,255,.98);
+    border-top: 1px solid #e8ebf0;
+    box-shadow: 0 -4px 18px rgba(16,24,40,.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.bottom-navigation .nav-item {
+    height: 62px;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #667085;
+}
+
+.bottom-navigation .nav-item svg {
+    width: 27px;
+    height: 27px;
+}
+
+.bottom-navigation .nav-item.active {
+    color: var(--blue);
+    font-weight: 650;
+}
+
+.bottom-navigation .add-button {
+    width: 58px;
+    height: 58px;
+    justify-self: center;
+    margin-top: -25px;
+    font-size: 38px;
+    line-height: 1;
+    border-radius: 50%;
+}
+
+@media (min-width: 431px) {
+    body {
+        padding: 12px 0;
+    }
+
+    .app {
+        min-height: calc(100vh - 24px);
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 12px 40px rgba(16,24,40,.10);
+    }
+}
+
+@media (max-width: 430px) {
+    body {
+        background: #ffffff;
+    }
+
+    .app {
+        border-radius: 0;
+        box-shadow: none;
     }
 }
