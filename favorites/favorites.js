@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded",()=>{
   const baseProducts=[
-    {id:1,name:"Wireless Earbuds",price:1200,category:"Electronics",location:"Near Student Center",condition:"Used",seller:"Alex D.",image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80"},
-    {id:2,name:"Mechanical Keyboard",price:1500,category:"Electronics",location:"Near Engineering",condition:"Used",seller:"Mark R.",image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80"},
-    {id:3,name:"Chemistry Book",price:300,category:"Books",location:"Near Library",condition:"Used",seller:"Jamie C.",image:"https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=700&q=80"},
-    {id:4,name:"Nike Backpack",price:800,category:"Supplies",location:"Near Gate 2",condition:"Used",seller:"Chris M.",image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"},
-    {id:5,name:"Gray Hoodie",price:400,category:"Uniforms",location:"Near Gate 3",condition:"Used",seller:"Taylor P.",image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"},
-    {id:6,name:"Scientific Calculator",price:600,category:"Supplies",location:"Near Library",condition:"Used",seller:"Sam L.",image:"https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=700&q=80"},
-    {id:7,name:"Casio FX-991ES Plus",price:500,category:"Supplies",location:"Near Library",condition:"Used",seller:"Jordan T.",image:"https://images.unsplash.com/photo-1596495578061-4e5d5d4f1b8f?auto=format&fit=crop&w=700&q=80"},
-    {id:8,name:"Calculus Textbook",price:230,category:"Books",location:"Near Engineering",condition:"Used",seller:"Pat G.",image:"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80"}
+    {id:1,name:"Wireless Earbuds",price:1200,category:"Electronics",location:"Near Student Center",condition:"Used",seller:"Alex D.",rating:4.8,image:"https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80"},
+    {id:2,name:"Mechanical Keyboard",price:1500,category:"Electronics",location:"Near Engineering",condition:"Used",seller:"Mark R.",rating:4.7,image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80"},
+    {id:3,name:"Chemistry Book",price:300,category:"Books",location:"Near Library",condition:"Used",seller:"Jamie C.",rating:4.9,image:"https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=700&q=80"},
+    {id:4,name:"Nike Backpack",price:800,category:"Supplies",location:"Near Gate 2",condition:"Used",seller:"Chris M.",rating:4.6,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"},
+    {id:5,name:"Gray Hoodie",price:400,category:"Uniforms",location:"Near Gate 3",condition:"Used",seller:"Taylor P.",rating:4.6,image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"},
+    {id:6,name:"Scientific Calculator",price:600,category:"Supplies",location:"Near Library",condition:"Used",seller:"Sam L.",rating:4.7,image:"https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=700&q=80"},
+    {id:7,name:"Casio FX-991ES Plus",price:500,category:"Supplies",location:"Near Library",condition:"Used",seller:"Jordan T.",rating:4.8,image:"https://images.unsplash.com/photo-1596495578061-4e5d5d4f1b8f?auto=format&fit=crop&w=700&q=80"},
+    {id:8,name:"Calculus Textbook",price:230,category:"Books",location:"Near Engineering",condition:"Used",seller:"Pat G.",rating:4.7,image:"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80"}
   ];
   const saved=JSON.parse(localStorage.getItem("campusMarketplaceListings")||"[]");
   const products=[...baseProducts,...(Array.isArray(saved)?saved:[])];
@@ -29,3 +29,22 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll("[data-nav]").forEach(btn=>btn.addEventListener("click",()=>{const n=btn.dataset.nav;if(n==="home")location.href="../index.html";if(n==="marketplace")location.href="../marketplace/marketplace.html";if(n==="profile")location.href="../profile/profile.html";if(n==="post")location.href="../marketplace/marketplace.html?post=1"}));
   render();
 });
+
+
+/* Unified navigation post action */
+(function campusNavPostHandler(){
+  const post = document.querySelector('.sell-button, .add-button');
+  if (!post) return;
+  post.addEventListener('click', function(e){
+    if (this.id === 'sellButton' && this.closest('.bottom-nav') && window.location.pathname.includes('/marketplace/')) {
+      e.preventDefault();
+    }
+    const target = this.dataset.nav || 'post';
+    if (target === 'post' && !this.closest('[data-post-bound]')) {
+      const modal = document.getElementById('modalBackdrop');
+      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
+      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
+      else window.location.href = 'marketplace/marketplace.html?post=1';
+    }
+  });
+})();

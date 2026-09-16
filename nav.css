@@ -1,0 +1,743 @@
+/* =========================================================
+   CAMPUS MARKETPLACE — UNIFIED NAVIGATION
+   Consistent, proportional, accessible across every page.
+   ========================================================= */
+
+:root {
+  --nav-blue: #1457d9;
+  --nav-blue-dark: #0e43ad;
+  --nav-blue-soft: #edf4ff;
+  --nav-blue-border: #d8e6ff;
+  --nav-ink: #25324a;
+  --nav-muted: #667085;
+  --nav-border: #e7ebf1;
+  --nav-white: #ffffff;
+}
+
+.bottom-nav,
+.bottom-navigation {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.bottom-nav *,
+.bottom-navigation * { box-sizing: border-box; }
+
+/* ----- Shared item treatment ----- */
+.bottom-nav .nav-item,
+.bottom-navigation .nav-item {
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--nav-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .18s ease, background .18s ease, border-color .18s ease,
+              transform .12s ease, box-shadow .18s ease;
+}
+
+.bottom-nav .nav-item svg,
+.bottom-navigation .nav-item svg {
+  width: 22px;
+  height: 22px;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex: 0 0 auto;
+}
+
+.bottom-nav .nav-item span,
+.bottom-navigation .nav-item span {
+  line-height: 1.1;
+}
+
+.bottom-nav .nav-item:hover,
+.bottom-navigation .nav-item:hover {
+  color: var(--nav-blue);
+  background: #f7f9fc;
+}
+
+.bottom-nav .nav-item.active,
+.bottom-navigation .nav-item.active {
+  color: var(--nav-blue);
+  background: var(--nav-blue-soft);
+  border-color: var(--nav-blue-border);
+  font-weight: 700;
+}
+
+.bottom-nav .nav-item.active svg,
+.bottom-navigation .nav-item.active svg {
+  stroke-width: 2.05 !important;
+}
+
+.bottom-nav .nav-item:focus-visible,
+.bottom-navigation .nav-item:focus-visible,
+.bottom-nav .sell-button:focus-visible,
+.bottom-navigation .add-button:focus-visible {
+  outline: 3px solid rgba(20,87,217,.18);
+  outline-offset: 2px;
+}
+
+.bottom-nav .nav-item:active,
+.bottom-navigation .nav-item:active { transform: scale(.97); }
+
+/* ----- Post button ----- */
+.bottom-nav .sell-button,
+.bottom-navigation .add-button {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  background: var(--nav-blue);
+  color: #fff;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bottom-nav .sell-button:hover,
+.bottom-navigation .add-button:hover {
+  background: var(--nav-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 9px 22px rgba(20,87,217,.24);
+}
+
+.bottom-nav .sell-button:active,
+.bottom-navigation .add-button:active {
+  transform: translateY(0) scale(.98);
+}
+
+.sell-plus {
+  display: inline-grid;
+  place-items: center;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.sell-label { display: inline; }
+
+/* =========================================================
+   MOBILE / TABLET — bottom navigation
+   ========================================================= */
+@media (max-width: 768px) {
+  .bottom-nav,
+  .bottom-navigation {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 78px !important;
+    min-height: 78px !important;
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom)) !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(120px, 1.5fr) repeat(2, minmax(0, 1fr)) !important;
+    align-items: center !important;
+    gap: 4px !important;
+    background: rgba(255,255,255,.97) !important;
+    border-top: 1px solid var(--nav-border) !important;
+    border-right: 0 !important;
+    box-shadow: 0 -6px 22px rgba(16,24,40,.06) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    z-index: 1000 !important;
+  }
+
+  .nav-brand { display: none !important; }
+
+  .bottom-nav .nav-item,
+  .bottom-navigation .nav-item {
+    width: 100% !important;
+    height: 60px !important;
+    min-width: 0 !important;
+    padding: 5px 2px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    border-radius: 13px !important;
+    font-size: 10.5px !important;
+    font-weight: 550;
+  }
+
+  .bottom-nav .nav-item svg,
+  .bottom-navigation .nav-item svg {
+    width: 23px !important;
+    height: 23px !important;
+  }
+
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    width: 100% !important;
+    height: 46px !important;
+    min-width: 0 !important;
+    justify-self: stretch !important;
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 9px !important;
+    border-radius: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 5px !important;
+    box-shadow: 0 6px 16px rgba(20,87,217,.18) !important;
+  }
+
+  .bottom-nav .sell-plus,
+  .bottom-navigation .sell-plus {
+    width: auto;
+    height: auto;
+    font-size: 19px !important;
+    font-weight: 700 !important;
+  }
+
+  .bottom-nav .sell-label,
+  .bottom-navigation .sell-label {
+    display: inline !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+    white-space: nowrap;
+  }
+
+  /* Keep page content clear of the fixed bar. */
+  body { padding-bottom: 78px !important; }
+}
+
+/* =========================================================
+   DESKTOP — compact, elegant left navigation
+   ========================================================= */
+@media (min-width: 769px) {
+  .bottom-nav,
+  .bottom-navigation {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 244px !important;
+    max-width: 244px !important;
+    height: 100vh !important;
+    padding: 104px 15px 26px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 7px !important;
+    background: rgba(255,255,255,.98) !important;
+    border: 0 !important;
+    border-right: 1px solid var(--nav-border) !important;
+    box-shadow: 5px 0 24px rgba(16,24,40,.035) !important;
+    z-index: 1000 !important;
+  }
+
+  .nav-brand {
+    position: absolute;
+    top: 28px;
+    left: 25px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: .92;
+    user-select: none;
+  }
+
+  .nav-brand-campus,
+  .nav-brand-marketplace {
+    font-family: inherit;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.65px;
+  }
+
+  /* Matches the original header branding: blue CAMPUS + dark MARKETPLACE. */
+  .nav-brand-campus { color: var(--nav-blue); }
+  .nav-brand-marketplace { color: #211E7A; }
+
+  .nav-brand::after {
+    content: '';
+    width: 34px;
+    height: 3px;
+    margin-top: 10px;
+    border-radius: 99px;
+    background: var(--nav-blue);
+  }
+
+  .bottom-nav .nav-item,
+  .bottom-navigation .nav-item {
+    width: 100% !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 13px !important;
+    border-radius: 12px !important;
+    font-size: 13px !important;
+    text-align: left !important;
+  }
+
+  .bottom-nav .nav-item svg,
+  .bottom-navigation .nav-item svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    order: 5;
+    width: 100% !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    margin: 8px 0 0 !important;
+    padding: 0 16px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+    box-shadow: 0 6px 16px rgba(20,87,217,.18) !important;
+  }
+
+  .bottom-nav .sell-plus,
+  .bottom-navigation .sell-plus {
+    font-size: 20px !important;
+  }
+
+  .bottom-nav .sell-label,
+  .bottom-navigation .sell-label {
+    display: inline !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Make the four destinations occupy a comfortable visual group. */
+  .bottom-nav .nav-item:nth-child(1),
+  .bottom-nav .nav-item:nth-child(2),
+  .bottom-nav .nav-item:nth-child(4),
+  .bottom-nav .nav-item:nth-child(5),
+  .bottom-navigation .nav-item:nth-child(1),
+  .bottom-navigation .nav-item:nth-child(2),
+  .bottom-navigation .nav-item:nth-child(4),
+  .bottom-navigation .nav-item:nth-child(5) {
+    flex: 0 0 52px;
+  }
+}
+
+@media (min-width: 769px) {
+  body { padding-bottom: 0 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav *, .bottom-navigation * { transition: none !important; }
+}
+
+/* =========================================================
+   FINAL POST ACTION FIX
+   One real label on desktop; one clean circular + on mobile.
+   Prevents legacy pseudo-elements from creating duplicate text.
+   ========================================================= */
+.sell-plus::before,
+.sell-plus::after,
+.sell-label::before,
+.sell-label::after,
+.bottom-navigation .add-button::before,
+.bottom-navigation .add-button::after {
+  content: none !important;
+}
+
+@media (max-width: 768px) {
+  .bottom-nav,
+  .bottom-navigation {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) 64px repeat(2, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+  }
+
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    justify-self: center !important;
+    align-self: center !important;
+    margin: -18px 0 0 !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    gap: 0 !important;
+  }
+
+  .bottom-nav .sell-plus,
+  .bottom-navigation .sell-plus {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    font-size: 34px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .bottom-nav .sell-label,
+  .bottom-navigation .sell-label {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    flex: 0 0 48px !important;
+  }
+
+  .bottom-nav .sell-plus,
+  .bottom-navigation .sell-plus {
+    font-size: 20px !important;
+    transform: none !important;
+  }
+
+  .bottom-nav .sell-label,
+  .bottom-navigation .sell-label {
+    display: inline !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* =========================================================
+   FINAL — POST ACTION IS OWNED BY nav.css
+   This block intentionally targets only the Post button.
+   It overrides legacy page-specific button rules without
+   changing the other navigation items.
+   ========================================================= */
+.bottom-nav .sell-button,
+.bottom-navigation .add-button {
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+  border: 0 !important;
+  background: var(--nav-blue) !important;
+  color: #fff !important;
+  overflow: hidden !important;
+}
+
+.bottom-nav .sell-button .sell-plus,
+.bottom-navigation .add-button .sell-plus {
+  display: inline-grid !important;
+  place-items: center !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.bottom-nav .sell-button .sell-label,
+.bottom-navigation .add-button .sell-label {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  white-space: nowrap !important;
+}
+
+/* Never generate a second plus or label through CSS. */
+.bottom-nav .sell-button::before,
+.bottom-nav .sell-button::after,
+.bottom-nav .sell-button .sell-plus::before,
+.bottom-nav .sell-button .sell-plus::after,
+.bottom-nav .sell-button .sell-label::before,
+.bottom-nav .sell-button .sell-label::after,
+.bottom-navigation .add-button::before,
+.bottom-navigation .add-button::after,
+.bottom-navigation .add-button .sell-plus::before,
+.bottom-navigation .add-button .sell-plus::after,
+.bottom-navigation .add-button .sell-label::before,
+.bottom-navigation .add-button .sell-label::after {
+  content: none !important;
+}
+
+@media (min-width: 769px) {
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    width: 100% !important;
+    height: 48px !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    flex: 0 0 48px !important;
+    margin: 8px 0 0 !important;
+    padding: 0 16px !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 7px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottom-nav .sell-button,
+  .bottom-navigation .add-button {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    justify-self: center !important;
+    align-self: center !important;
+    margin: -18px 0 0 !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    gap: 0 !important;
+  }
+
+  .bottom-nav .sell-button .sell-plus,
+  .bottom-navigation .add-button .sell-plus {
+    font-size: 34px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .bottom-nav .sell-button .sell-label,
+  .bottom-navigation .add-button .sell-label {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   FINAL NAV MASTER OVERRIDES
+   nav.css is loaded last on every page. These rules are the
+   single source of truth for the shared navigation.
+   ========================================================= */
+.bottom-nav {
+  box-sizing: border-box !important;
+  font-family: inherit !important;
+}
+
+.bottom-nav .nav-item {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  color: var(--nav-muted) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  text-decoration: none !important;
+}
+
+.bottom-nav .nav-item svg {
+  box-sizing: border-box !important;
+  flex: 0 0 auto !important;
+  width: 22px !important;
+  height: 22px !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+.bottom-nav .nav-item.active {
+  color: var(--nav-blue) !important;
+  background: var(--nav-blue-soft) !important;
+  border-color: var(--nav-blue-border) !important;
+}
+
+.bottom-nav .nav-item:hover {
+  color: var(--nav-blue) !important;
+  background: #f7f9fc !important;
+}
+
+.bottom-nav .sell-button {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  background: var(--nav-blue) !important;
+  color: #fff !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+}
+
+.bottom-nav .sell-button::before,
+.bottom-nav .sell-button::after,
+.bottom-nav .sell-button .sell-plus::before,
+.bottom-nav .sell-button .sell-plus::after,
+.bottom-nav .sell-button .sell-label::before,
+.bottom-nav .sell-button .sell-label::after {
+  content: none !important;
+}
+
+.bottom-nav .sell-button .sell-plus {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+.bottom-nav .sell-button .sell-label {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+@media (min-width: 769px) {
+  .bottom-nav {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    right: auto !important;
+    bottom: 0 !important;
+    transform: none !important;
+    width: 236px !important;
+    max-width: 236px !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 94px 16px 28px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 9px !important;
+    background: #fff !important;
+    border: 0 !important;
+    border-right: 1px solid var(--nav-border) !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 0 20px rgba(16,24,40,.04) !important;
+    z-index: 100 !important;
+  }
+
+  .bottom-nav .nav-item {
+    width: 100% !important;
+    height: 56px !important;
+    min-height: 56px !important;
+    flex: 0 0 56px !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 13px !important;
+    padding: 0 16px !important;
+    border-radius: 13px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+  }
+
+  .bottom-nav .nav-item svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .bottom-nav .sell-button {
+    width: 100% !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    flex: 0 0 48px !important;
+    margin: 8px 0 0 !important;
+    padding: 0 16px !important;
+    border-radius: 13px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .bottom-nav {
+    position: fixed !important;
+    left: 50% !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    max-width: 430px !important;
+    height: 78px !important;
+    min-height: 78px !important;
+    padding: 7px 10px calc(7px + env(safe-area-inset-bottom)) !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1.05fr 1fr 1fr !important;
+    align-items: center !important;
+    gap: 0 !important;
+    background: rgba(255,255,255,.98) !important;
+    border: 0 !important;
+    border-top: 1px solid #e8ebf0 !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -4px 18px rgba(16,24,40,.04) !important;
+    z-index: 100 !important;
+  }
+
+  .bottom-nav .nav-item {
+    width: 100% !important;
+    height: 62px !important;
+    min-height: 62px !important;
+    flex: none !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    border-radius: 13px !important;
+    font-size: 10.5px !important;
+    font-weight: 500 !important;
+  }
+
+  .bottom-nav .nav-item svg {
+    width: 24px !important;
+    height: 24px !important;
+  }
+
+  .bottom-nav .sell-button {
+    width: 58px !important;
+    height: 58px !important;
+    min-width: 58px !important;
+    min-height: 58px !important;
+    justify-self: center !important;
+    align-self: center !important;
+    margin: -20px 0 0 !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    display: grid !important;
+    place-items: center !important;
+    gap: 0 !important;
+  }
+
+  .bottom-nav .sell-button .sell-plus {
+    font-size: 34px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .bottom-nav .sell-button .sell-label {
+    display: none !important;
+  }
+}

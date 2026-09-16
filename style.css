@@ -2548,3 +2548,152 @@ body {
         box-shadow: none;
     }
 }
+
+/* =========================================================
+   SHARED RESPONSIVE NAVIGATION — DESKTOP FIRST
+   One consistent navigation system across Home/Marketplace/
+   Favorites/Profile. Sidebar on desktop, bottom bar on mobile.
+   ========================================================= */
+@media (min-width: 769px) {
+    body { padding: 0 !important; background: #f4f6fa; }
+    .app {
+        max-width: none !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 40px 40px 260px !important;
+        border-radius: 0 !important;
+        background: #fff;
+    }
+    .topbar { margin-left: 0 !important; }
+    .bottom-navigation {
+        left: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        transform: none !important;
+        width: 220px !important;
+        max-width: 220px !important;
+        height: 100vh !important;
+        min-height: 100vh !important;
+        padding: 92px 14px 28px !important;
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(5, minmax(52px, 1fr)) !important;
+        gap: 8px !important;
+        align-content: center !important;
+        border-top: 0 !important;
+        border-right: 1px solid #e7eaf0 !important;
+        box-shadow: 4px 0 20px rgba(16,24,40,.04) !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: #fff !important;
+    }
+    .bottom-navigation .nav-item {
+        width: 100% !important;
+        height: 58px !important;
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+        gap: 13px !important;
+        padding: 0 18px !important;
+        border-radius: 13px !important;
+        font-size: 13px !important;
+        font-weight: 600 !important;
+        color: #667085 !important;
+    }
+    .bottom-navigation .nav-item:hover { background: #f5f7fb !important; color: var(--blue) !important; }
+    .bottom-navigation .nav-item.active { background: #edf4ff !important; color: var(--blue) !important; }
+    .bottom-navigation .nav-item svg { width: 22px !important; height: 22px !important; flex: 0 0 auto; stroke-width: 1.9 !important; }
+    .bottom-navigation .add-button {
+        width: calc(100% - 10px) !important;
+        height: 50px !important;
+        margin: 8px 5px !important;
+        border-radius: 13px !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        box-shadow: 0 8px 20px rgba(20,87,217,.18) !important;
+    }
+    .bottom-navigation .add-button::before { content: "＋"; }
+    .bottom-navigation .add-button { font-size: 0 !important; }
+}
+
+@media (max-width: 768px) {
+    .bottom-navigation .nav-item svg { width: 23px; height: 23px; stroke-width: 1.9; }
+    .bottom-navigation .nav-item { font-size: 10px; }
+}
+
+
+/* =========================================================
+   CAMPUS MARKETPLACE — SHARED NAVIGATION & ICON SYSTEM
+   One icon language across every screen. Desktop sidebar,
+   tablet/mobile bottom bar.
+   ========================================================= */
+.bottom-nav, .bottom-navigation {
+  --nav-blue:#1457d9; --nav-ink:#344054; --nav-muted:#667085;
+  box-sizing:border-box;
+}
+.bottom-nav .nav-item, .bottom-navigation .nav-item {
+  position:relative; border:1px solid transparent; color:var(--nav-muted);
+  transition:background .18s ease,color .18s ease,transform .18s ease,border-color .18s ease;
+}
+.bottom-nav .nav-item svg, .bottom-navigation .nav-item svg {
+  fill:none !important; stroke:currentColor !important;
+  stroke-width:1.8 !important; stroke-linecap:round; stroke-linejoin:round;
+}
+.bottom-nav .nav-item:hover, .bottom-navigation .nav-item:hover {
+  color:var(--nav-blue) !important; background:#f7f9fc !important;
+}
+.bottom-nav .nav-item.active, .bottom-navigation .nav-item.active {
+  color:var(--nav-blue) !important; background:#edf4ff !important;
+  border-color:#dbe8ff !important; font-weight:700 !important;
+}
+.bottom-nav .nav-item.active svg, .bottom-navigation .nav-item.active svg { stroke-width:2 !important; }
+.bottom-nav .nav-item:active, .bottom-navigation .nav-item:active { transform:scale(.97); }
+.sell-button {
+  position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  background:var(--nav-blue) !important; color:#fff !important;
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.sell-button:hover { background:#0e43ad !important; transform:translateY(-1px); box-shadow:0 8px 20px rgba(20,87,217,.24) !important; }
+.sell-plus { font-weight:400; line-height:1; }
+.sell-label { display:none; }
+
+/* Marketplace category chips: familiar, readable, touch-friendly */
+.category-list { align-items:stretch !important; gap:12px !important; }
+.category-item {
+  min-width:92px !important; min-height:86px !important; padding:10px 9px 9px !important;
+  border:1px solid #e6eaf0 !important; border-radius:16px !important;
+  background:#fff !important; color:#344054 !important;
+  box-shadow:0 2px 8px rgba(16,24,40,.035);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease;
+}
+.category-item:hover { transform:translateY(-2px); border-color:#c9d9f7 !important; box-shadow:0 7px 18px rgba(20,87,217,.08); }
+.category-item.active { background:#f4f8ff !important; border-color:#bcd1f5 !important; color:#1457d9 !important; box-shadow:0 6px 16px rgba(20,87,217,.08); }
+.category-icon {
+  width:42px !important; height:42px !important; border-radius:13px !important;
+  display:grid !important; place-items:center !important; margin-bottom:7px !important;
+  background:#f4f6f9 !important; color:#475467 !important;
+}
+.category-item.active .category-icon { background:#e3efff !important; color:#1457d9 !important; }
+.category-icon svg { width:23px !important; height:23px !important; fill:none !important; stroke:currentColor !important; stroke-width:1.7 !important; stroke-linecap:round; stroke-linejoin:round; }
+.category-item > span:last-child { font-size:11px !important; font-weight:650 !important; white-space:nowrap; }
+
+@media (max-width:768px) {
+  .bottom-nav, .bottom-navigation { height:78px !important; min-height:78px !important; padding:7px 10px calc(7px + env(safe-area-inset-bottom)) !important; }
+  .bottom-nav .nav-item, .bottom-navigation .nav-item { height:62px !important; gap:4px !important; border-radius:13px !important; font-size:10.5px !important; }
+  .bottom-nav .nav-item svg, .bottom-navigation .nav-item svg { width:24px !important; height:24px !important; }
+  .bottom-nav .sell-button, .bottom-navigation .add-button { width:58px !important; height:58px !important; border-radius:18px !important; margin-top:-20px !important; }
+  .sell-plus { font-size:35px; }
+  .category-list { overflow-x:auto !important; padding-bottom:4px !important; scrollbar-width:none; }
+  .category-list::-webkit-scrollbar { display:none; }
+}
+@media (min-width:769px) {
+  .bottom-nav, .bottom-navigation { width:236px !important; max-width:236px !important; padding:94px 16px 28px !important; gap:9px !important; }
+  .bottom-nav .nav-item, .bottom-navigation .nav-item { height:56px !important; padding:0 16px !important; gap:13px !important; border-radius:13px !important; font-size:13px !important; }
+  .bottom-nav .nav-item svg, .bottom-navigation .nav-item svg { width:21px !important; height:21px !important; flex:0 0 auto; }
+  .bottom-nav .sell-button, .bottom-navigation .add-button { width:100% !important; height:48px !important; margin:8px 0 !important; border-radius:13px !important; }
+  .bottom-nav .sell-plus { font-size:0; }
+  .bottom-nav .sell-plus::before { content:'＋'; font-size:19px; }
+  .bottom-nav .sell-label { display:inline !important; font-size:13px; font-weight:700; margin-left:7px; }
+}
+@media (min-width: 769px) {
+  .app { padding-left: 284px !important; }
+}

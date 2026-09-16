@@ -16,3 +16,22 @@ document.addEventListener("DOMContentLoaded",()=>{
  document.getElementById("signOut").addEventListener("click",()=>{localStorage.removeItem("campusMarketplaceName");localStorage.removeItem("campusMarketplaceUser");show("Signed out");setTimeout(()=>location.href="../login/login.html",450)});
  document.querySelectorAll("[data-nav]").forEach(btn=>btn.addEventListener("click",()=>{const n=btn.dataset.nav;if(n==="home")location.href="../index.html";if(n==="marketplace")location.href="../marketplace/marketplace.html";if(n==="favorites")location.href="../favorites/favorites.html";if(n==="post")location.href="../marketplace/marketplace.html?post=1"}));
 });
+
+
+/* Unified navigation post action */
+(function campusNavPostHandler(){
+  const post = document.querySelector('.sell-button, .add-button');
+  if (!post) return;
+  post.addEventListener('click', function(e){
+    if (this.id === 'sellButton' && this.closest('.bottom-nav') && window.location.pathname.includes('/marketplace/')) {
+      e.preventDefault();
+    }
+    const target = this.dataset.nav || 'post';
+    if (target === 'post' && !this.closest('[data-post-bound]')) {
+      const modal = document.getElementById('modalBackdrop');
+      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
+      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
+      else window.location.href = 'marketplace/marketplace.html?post=1';
+    }
+  });
+})();

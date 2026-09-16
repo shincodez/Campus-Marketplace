@@ -9,113 +9,14 @@
    ========================================================= */
 
 const products = [
-    {
-        id: 1,
-        name: "Casio FX-991ES Plus",
-        price: 500,
-        category: "Calculators",
-        location: "Near Library",
-        condition: "USED",
-        rating: 4.8,
-        image:
-            "https://images.unsplash.com/photo-1596495578066-2e8a2f3f2f7e?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 2,
-        name: "Calculus Textbook",
-        price: 230,
-        category: "Books",
-        location: "Near Engineering",
-        condition: "USED",
-        rating: 4.7,
-        image:
-            "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 3,
-        name: "Gray Hoodie",
-        price: 400,
-        category: "Uniforms",
-        location: "Near Gate 3",
-        condition: "USED",
-        rating: 4.6,
-        image:
-            "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 4,
-        name: "Wireless Earbuds",
-        price: 650,
-        category: "Electronics",
-        location: "Near Student Center",
-        condition: "LIKE NEW",
-        rating: 4.9,
-        image:
-            "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 5,
-        name: "Mechanical Keyboard",
-        price: 1200,
-        category: "Electronics",
-        location: "Near Library",
-        condition: "USED",
-        rating: 4.8,
-        image:
-            "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 6,
-        name: "Chemistry Book",
-        price: 350,
-        category: "Books",
-        location: "Near Science Building",
-        condition: "USED",
-        rating: 4.5,
-        image:
-            "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 7,
-        name: "Black Backpack",
-        price: 550,
-        category: "Supplies",
-        location: "Near Gate 1",
-        condition: "LIKE NEW",
-        rating: 4.7,
-        image:
-            "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 8,
-        name: "Basketball",
-        price: 450,
-        category: "Sports",
-        location: "Near Gym",
-        condition: "USED",
-        rating: 4.6,
-        image:
-            "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=700&q=80"
-    },
-
-    {
-        id: 9,
-        name: "Study Desk",
-        price: 1500,
-        category: "Furniture",
-        location: "Near Dormitory",
-        condition: "USED",
-        rating: 4.8,
-        image:
-            "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=80"
-    }
+    { id: 1, name: "Wireless Earbuds", price: 1200, category: "Electronics", location: "Near Student Center", condition: "Used", rating: 4.8, image: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=700&q=80" },
+    { id: 2, name: "Mechanical Keyboard", price: 1500, category: "Electronics", location: "Near Engineering", condition: "Used", rating: 4.7, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80" },
+    { id: 3, name: "Chemistry Book", price: 300, category: "Books", location: "Near Library", condition: "Used", rating: 4.9, image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=700&q=80" },
+    { id: 4, name: "Nike Backpack", price: 800, category: "Supplies", location: "Near Gate 2", condition: "Used", rating: 4.6, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80" },
+    { id: 5, name: "Gray Hoodie", price: 400, category: "Uniforms", location: "Near Gate 3", condition: "Used", rating: 4.6, image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80" },
+    { id: 6, name: "Scientific Calculator", price: 600, category: "Supplies", location: "Near Library", condition: "Used", rating: 4.7, image: "https://images.unsplash.com/photo-1587145820266-a5951ee6f620?auto=format&fit=crop&w=700&q=80" },
+    { id: 7, name: "Casio FX-991ES Plus", price: 500, category: "Supplies", location: "Near Library", condition: "Used", rating: 4.8, image: "https://images.unsplash.com/photo-1596495578061-4e5d5d4f1b8f?auto=format&fit=crop&w=700&q=80" },
+    { id: 8, name: "Calculus Textbook", price: 230, category: "Books", location: "Near Engineering", condition: "Used", rating: 4.7, image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80" }
 ];
 
 
@@ -127,7 +28,10 @@ let activeCategory = "All";
 
 let searchTerm = "";
 
-const favorites = new Set();
+let favorites = new Set(
+    JSON.parse(localStorage.getItem("campusMarketplaceFavorites") || "[]")
+        .map(Number)
+);
 
 let carouselPage = 0;
 
@@ -552,6 +456,11 @@ function toggleFavorite(productId) {
 
     }
 
+
+    localStorage.setItem(
+        "campusMarketplaceFavorites",
+        JSON.stringify([...favorites])
+    );
 
     renderProducts();
 }
@@ -2203,3 +2112,22 @@ document.addEventListener(
 
     }
 );
+
+
+/* Unified navigation post action */
+(function campusNavPostHandler(){
+  const post = document.querySelector('.sell-button, .add-button');
+  if (!post) return;
+  post.addEventListener('click', function(e){
+    if (this.id === 'sellButton' && this.closest('.bottom-nav') && window.location.pathname.includes('/marketplace/')) {
+      e.preventDefault();
+    }
+    const target = this.dataset.nav || 'post';
+    if (target === 'post' && !this.closest('[data-post-bound]')) {
+      const modal = document.getElementById('modalBackdrop');
+      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
+      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
+      else window.location.href = 'marketplace/marketplace.html?post=1';
+    }
+  });
+})();

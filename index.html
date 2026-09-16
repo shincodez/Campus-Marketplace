@@ -15,6 +15,7 @@
     >
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 
 <body>
@@ -437,69 +438,17 @@
         <!-- =========================
              BOTTOM NAVIGATION
         ========================== -->
-        <nav class="bottom-navigation">
-
-            <button
-                class="nav-item active"
-                data-page="home"
-            >
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 10L12 3L21 10V21H3Z"></path>
-                    <path d="M9 21V14H15V21"></path>
-                </svg>
-
-                <span>Home</span>
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page="marketplace"
-            >
-                <svg viewBox="0 0 24 24">
-                    <path d="M4 10H20L18 4H6Z"></path>
-                    <path d="M5 10V20H19V10"></path>
-                    <path d="M9 20V14H15V20"></path>
-                </svg>
-
-                <span>Marketplace</span>
-            </button>
-
-
-            <button
-                class="add-button"
-                id="addButton"
-                aria-label="Post an item"
-            >
-                +
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page="favorites"
-            >
-                <svg viewBox="0 0 24 24">
-                    <path d="M20.8 8.8C20.8 14.2 12 19.5 12 19.5S3.2 14.2 3.2 8.8C3.2 5.5 7 3.4 10 5.5L12 7L14 5.5C17 3.4 20.8 5.5 20.8 8.8Z"></path>
-                </svg>
-
-                <span>Favorites</span>
-            </button>
-
-
-            <button
-                class="nav-item"
-                data-page="profile"
-            >
-                <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M4 21C4.8 16.3 7.4 14 12 14C16.6 14 19.2 16.3 20 21"></path>
-                </svg>
-
-                <span>Profile</span>
-            </button>
-
-        </nav>
+        <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-brand" aria-label="Campus Marketplace">
+        <span class="nav-brand-campus">CAMPUS</span>
+        <span class="nav-brand-marketplace">MARKETPLACE</span>
+      </div>
+      <button class="nav-item active" data-nav="home" data-page="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg><span>Home</span></button>
+      <button class="nav-item" data-nav="marketplace" data-page="marketplace" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg><span>Marketplace</span></button>
+      <button class="sell-button" data-nav="post" id="sellButton" type="button" aria-label="Post an item"><span class="sell-plus">+</span><span class="sell-label">Post an Item</span></button>
+      <button class="nav-item" data-nav="favorites" data-page="favorites" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg><span>Favorites</span></button>
+      <button class="nav-item" data-nav="profile" data-page="profile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg><span>Profile</span></button>
+    </nav>
 
 
         <!-- =========================
