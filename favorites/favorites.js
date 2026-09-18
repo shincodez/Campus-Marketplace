@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     {id:7,name:"Casio FX-991ES Plus",price:500,category:"Supplies",location:"Near Library",condition:"Used",seller:"Jordan T.",rating:4.8,image:"https://images.unsplash.com/photo-1596495578061-4e5d5d4f1b8f?auto=format&fit=crop&w=700&q=80"},
     {id:8,name:"Calculus Textbook",price:230,category:"Books",location:"Near Engineering",condition:"Used",seller:"Pat G.",rating:4.7,image:"https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80"}
   ];
-  const saved=JSON.parse(localStorage.getItem("campusMarketplaceListings")||"[]");
+  const saved=JSON.parse(localStorage.getItem("campusMarketplaceUserListings")||"[]");
   const products=[...baseProducts,...(Array.isArray(saved)?saved:[])];
   let favorites=JSON.parse(localStorage.getItem("campusMarketplaceFavorites")||"[]");
   let tab="all"; let query="";
@@ -26,25 +26,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   list.addEventListener("click",e=>{const remove=e.target.closest("[data-remove]");if(!remove)return;const id=Number(remove.dataset.remove);favorites=favorites.filter(x=>x!==id);localStorage.setItem("campusMarketplaceFavorites",JSON.stringify(favorites));render();showToast("Removed from favorites")});
   document.getElementById("browseButton").addEventListener("click",()=>location.href="../marketplace/marketplace.html");
   document.getElementById("backButton").addEventListener("click",()=>history.length>1?history.back():location.href="../marketplace/marketplace.html");
-  document.querySelectorAll("[data-nav]").forEach(btn=>btn.addEventListener("click",()=>{const n=btn.dataset.nav;if(n==="home")location.href="../index.html";if(n==="marketplace")location.href="../marketplace/marketplace.html";if(n==="profile")location.href="../profile/profile.html";if(n==="post")location.href="../marketplace/marketplace.html?post=1"}));
+  document.querySelectorAll("[data-nav]").forEach(btn=>btn.addEventListener("click",()=>{const n=btn.dataset.nav;if(n==="home")location.href="../index.html";if(n==="marketplace")location.href="../marketplace/marketplace.html";if(n==="profile")location.href="../profile/profile.html";if(n==="post")location.href="../post-item/post-item.html"}));
   render();
 });
 
 
-/* Unified navigation post action */
-(function campusNavPostHandler(){
-  const post = document.querySelector('.sell-button, .add-button');
-  if (!post) return;
-  post.addEventListener('click', function(e){
-    if (this.id === 'sellButton' && this.closest('.bottom-nav') && window.location.pathname.includes('/marketplace/')) {
-      e.preventDefault();
-    }
-    const target = this.dataset.nav || 'post';
-    if (target === 'post' && !this.closest('[data-post-bound]')) {
-      const modal = document.getElementById('modalBackdrop');
-      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
-      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
-      else window.location.href = 'marketplace/marketplace.html?post=1';
-    }
-  });
-})();

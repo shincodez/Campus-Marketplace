@@ -131,6 +131,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
+    const savedListings = JSON.parse(localStorage.getItem("campusMarketplaceUserListings") || "[]");
+    if (Array.isArray(savedListings) && savedListings.length) products.push(...savedListings);
+
 
     /* =====================================
        STATE
@@ -1726,11 +1729,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sellButton.addEventListener(
         "click",
         () => {
-
-            showToast(
-                "Post Item will be available soon."
-            );
-
+            window.location.href = "../post-item/post-item.html";
         }
     );
 
@@ -1857,20 +1856,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-/* Unified navigation post action */
-(function campusNavPostHandler(){
-  const post = document.querySelector('.sell-button, .add-button');
-  if (!post) return;
-  post.addEventListener('click', function(e){
-    if (this.id === 'sellButton' && this.closest('.bottom-nav') && window.location.pathname.includes('/marketplace/')) {
-      e.preventDefault();
-    }
-    const target = this.dataset.nav || 'post';
-    if (target === 'post' && !this.closest('[data-post-bound]')) {
-      const modal = document.getElementById('modalBackdrop');
-      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
-      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
-      else window.location.href = 'marketplace/marketplace.html?post=1';
-    }
-  });
-})();

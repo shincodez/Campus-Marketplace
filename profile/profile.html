@@ -3,40 +3,238 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#1457d9">
+  <meta name="theme-color" content="#ffffff">
   <title>Profile | Campus Marketplace</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../nav.css">
   <link rel="stylesheet" href="profile.css">
   <script src="profile.js" defer></script>
-    <link rel="stylesheet" href="../nav.css">
 </head>
 <body>
-<main class="app">
-  <header class="page-header"><button class="icon-button" id="backButton" aria-label="Go back"><svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"></path></svg></button><h1>Profile</h1><button class="settings-button" id="settingsButton" aria-label="Settings"><svg viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"></path><circle cx="12" cy="12" r="3.2"></circle></svg></button></header>
-  <section class="content">
-    <section class="profile-card"><div class="avatar" id="avatar">ME</div><div class="profile-main"><h2 id="profileName">Campus Student</h2><p id="profileEmail">student@campus.edu</p><div class="verified"><span>✓</span> Verified Student</div></div></section>
-    <div class="profile-location"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><span id="profileLocation">Campus</span><span class="dot">•</span><span>Joined <span id="joinDate">2024</span></span></div>
+  <main class="profile-page">
+    <header class="profile-header">
+      <div class="profile-title-wrap">
+        <p class="profile-eyebrow">CAMPUS MARKETPLACE</p>
+        <h1>Profile</h1>
+      </div>
 
-    <section class="section"><h2>Student Verification</h2><div class="action-card"><div class="card-icon blue"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"></path><circle cx="9" cy="11" r="2"></circle><path d="M13 10h4M13 13h4"></path></svg></div><div class="action-copy"><strong>Verified student</strong><span>Your account has been verified.</span></div><button id="viewId" class="text-button">View ID</button></div></section>
+      <button class="icon-button" id="settingsButton" type="button" aria-label="Open settings" title="Settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6 18 18M18 6l-1.4 1.4M7.4 16.6 6 18"></path>
+          <circle cx="12" cy="12" r="3.3"></circle>
+        </svg>
+      </button>
+    </header>
 
-    <section class="section"><h2>My Activity</h2><div class="stats-grid"><button class="stat-card" data-action="bought"><strong>0</strong><span>Items Bought</span></button><button class="stat-card" data-action="sold"><strong id="soldCount">0</strong><span>Items Sold</span></button><button class="stat-card" data-action="favorites"><strong id="favoriteCount">0</strong><span>Favorites</span></button><button class="stat-card" data-action="messages"><strong>0</strong><span>Messages</span></button></div></section>
+    <section class="profile-content">
+      <!-- Profile identity -->
+      <section class="identity-layout">
+        <article class="identity-card">
+          <div class="avatar-area">
+            <div class="avatar" id="avatar" aria-label="Profile photo or initials">CS</div>
+            <button class="camera-button" id="avatarButton" type="button" aria-label="Change profile photo" title="Change profile photo">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 8.5h3l1.4-2h7.2l1.4 2h3v10H4v-10Z"></path>
+                <circle cx="12" cy="13.5" r="3.1"></circle>
+              </svg>
+            </button>
+            <input id="avatarInput" type="file" accept="image/*" hidden>
+          </div>
 
-    <section class="section"><h2>Selling Tools</h2><div class="menu-card"><button data-action="listings"><span class="menu-icon">▣</span><span>My Listings</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button data-action="sold"><span class="menu-icon">✓</span><span>Sold Items</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button data-action="analytics"><span class="menu-icon">↗</span><span>Sales Analytics</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button></div></section>
+          <div class="identity-details">
+            <div class="name-line">
+              <h2 id="profileName">Campus Student</h2>
+              <span class="verified-pill">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3.5 19 6v5.2c0 4.2-2.7 7.8-7 9.3-4.3-1.5-7-5.1-7-9.3V6l7-2.5Z"></path>
+                  <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+                </svg>
+                Verified Student
+              </span>
+            </div>
 
-    <section class="section"><h2>Account</h2><div class="menu-card"><button data-action="personal"><span class="menu-icon">◎</span><span>Personal Information</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button data-action="verification"><span class="menu-icon">✓</span><span>Verification</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button data-action="security"><span class="menu-icon">◇</span><span>Security</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button><button data-action="notifications"><span class="menu-icon">◌</span><span>Notifications</span><svg viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"></path></svg></button></div></section>
-    <button class="signout" id="signOut">Sign Out</button>
-  </section>
-  <nav class="bottom-nav" aria-label="Primary navigation">
+            <p class="profile-email" id="profileEmail">student@campus.edu</p>
+
+            <div class="identity-meta">
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+                <span id="profileLocation">Campus</span>
+              </span>
+              <span class="meta-dot">•</span>
+              <span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M8 3v4M16 3v4M4 9h16"></path></svg>
+                Joined <span id="joinDate">May 2024</span>
+              </span>
+            </div>
+          </div>
+
+          <button class="edit-profile-button" id="editProfileButton" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6 4 4M4 20l3.5-.7L18.5 8.3a2.8 2.8 0 0 0-4-4L3.5 15.3 4 20Z"></path></svg>
+            Edit Profile
+          </button>
+        </article>
+
+        <article class="verification-card">
+          <div class="verification-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3.5 19 6v5.2c0 4.2-2.7 7.8-7 9.3-4.3-1.5-7-5.1-7-9.3V6l7-2.5Z"></path>
+              <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+            </svg>
+          </div>
+          <div class="verification-copy">
+            <h3>Student Verification</h3>
+            <p>Your account is verified. You can buy and sell within the campus community.</p>
+          </div>
+          <button class="view-id-button" id="viewId" type="button">View ID</button>
+        </article>
+      </section>
+
+      <!-- Activity -->
+      <section class="profile-section">
+        <div class="section-title-row">
+          <h2>My Activity</h2>
+          <span>Marketplace activity</span>
+        </div>
+
+        <div class="activity-card">
+          <button class="activity-item blue" data-action="bought" type="button">
+            <span class="activity-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg>
+            </span>
+            <strong id="boughtCount">0</strong>
+            <span>Items Bought</span>
+          </button>
+
+          <button class="activity-item green" data-action="sold" type="button">
+            <span class="activity-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 8-8h7a1 1 0 0 1 1 1v7l-8 8-8-8Z"></path><circle cx="15.5" cy="8.5" r="1.2"></circle></svg>
+            </span>
+            <strong id="soldCount">0</strong>
+            <span>Items Sold</span>
+          </button>
+
+          <button class="activity-item red" data-action="favorites" type="button">
+            <span class="activity-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg>
+            </span>
+            <strong id="favoriteCount">0</strong>
+            <span>Favorites</span>
+          </button>
+
+          <button class="activity-item orange" data-action="messages" type="button">
+            <span class="activity-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.2c0 4.2-3.6 7.2-8 7.2-1.1 0-2.1-.2-3-.5L5 20l1.1-3.2C4.8 15.6 4 13.5 4 11.2 4 7 7.6 4 12 4s8 3 8 7.2Z"></path></svg>
+            </span>
+            <strong id="messageCount">0</strong>
+            <span>Messages</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Tools -->
+      <section class="profile-section tools-grid">
+        <div>
+          <div class="section-title-row simple"><h2>Selling Tools</h2></div>
+          <div class="menu-card">
+            <button class="menu-row" data-action="listings" type="button">
+              <span class="menu-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path><circle cx="12" cy="12" r="8.5"></circle></svg></span>
+              <span class="menu-copy"><strong>My Listings</strong><small>Manage your posted items</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+            <button class="menu-row" data-action="sold" type="button">
+              <span class="menu-icon orange"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"></path><path d="m4 7.5 8 4.5 8-4.5M12 12v9"></path></svg></span>
+              <span class="menu-copy"><strong>Sold Items</strong><small>View your sold items</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+            <button class="menu-row" data-action="analytics" type="button">
+              <span class="menu-icon purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19V11M12 19V6M19 19V3"></path><path d="M3 19h18"></path></svg></span>
+              <span class="menu-copy"><strong>Sales Analytics</strong><small>Track your selling performance</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-title-row simple"><h2>Account</h2></div>
+          <div class="menu-card">
+            <button class="menu-row" data-action="personal" type="button">
+              <span class="menu-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg></span>
+              <span class="menu-copy"><strong>Personal Information</strong><small>Edit your personal details</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+            <button class="menu-row" data-action="verification" type="button">
+              <span class="menu-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 19 6v5.2c0 4.2-2.7 7.8-7 9.3-4.3-1.5-7-5.1-7-9.3V6l7-2.5Z"></path><path d="m8.5 12 2.2 2.2 4.8-5"></path></svg></span>
+              <span class="menu-copy"><strong>Verification</strong><small>Manage your student verification</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+            <button class="menu-row" data-action="security" type="button">
+              <span class="menu-icon purple"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg></span>
+              <span class="menu-copy"><strong>Security</strong><small>Change password and security settings</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+            <button class="menu-row" data-action="notifications" type="button">
+              <span class="menu-icon gray"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 10a6 6 0 0 0-12 0c0 6-2.5 6-2.5 8h15c0-2-2.5-2-2.5-8Z"></path><path d="M10 21h4"></path></svg></span>
+              <span class="menu-copy"><strong>Notifications</strong><small>Manage your notification preferences</small></span>
+              <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <button class="signout-button" id="signOut" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5M15 12H3"></path><path d="M13 4h6a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-6"></path></svg>
+        Sign Out
+      </button>
+    </section>
+
+    <!-- Shared responsive navigation: every icon is functional on this page. -->
+    <nav class="bottom-nav" aria-label="Primary navigation">
       <div class="nav-brand" aria-label="Campus Marketplace">
         <span class="nav-brand-campus">CAMPUS</span>
         <span class="nav-brand-marketplace">MARKETPLACE</span>
       </div>
-      <button class="nav-item" data-nav="home" data-page="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg><span>Home</span></button>
-      <button class="nav-item" data-nav="marketplace" data-page="marketplace" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg><span>Marketplace</span></button>
-      <button class="sell-button" data-nav="post" id="sellButton" type="button" aria-label="Post an item"><span class="sell-plus">+</span><span class="sell-label">Post an Item</span></button>
-      <button class="nav-item" data-nav="favorites" data-page="favorites" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg><span>Favorites</span></button>
-      <button class="nav-item active" data-nav="profile" data-page="profile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg><span>Profile</span></button>
+
+      <button class="nav-item" data-nav="home" type="button" aria-label="Go to Home">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg>
+        <span>Home</span>
+      </button>
+
+      <button class="nav-item" data-nav="marketplace" type="button" aria-label="Go to Marketplace">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg>
+        <span>Marketplace</span>
+      </button>
+
+      <button class="sell-button" data-nav="post" id="sellButton" type="button" aria-label="Post an Item" title="Post an Item">
+        <span class="sell-plus">+</span><span class="sell-label">Post an Item</span>
+      </button>
+
+      <button class="nav-item" data-nav="favorites" type="button" aria-label="Go to Favorites">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg>
+        <span>Favorites</span>
+      </button>
+
+      <button class="nav-item active" data-nav="profile" type="button" aria-current="page" aria-label="Current page: Profile">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg>
+        <span>Profile</span>
+      </button>
     </nav>
-  <div class="toast" id="toast" role="status"></div>
-</main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">×</button>
+        <div class="modal-icon" id="modalIcon">✓</div>
+        <p class="modal-kicker" id="modalKicker">CAMPUS MARKETPLACE</p>
+        <h2 id="modalTitle">Profile</h2>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-actions" id="modalActions"></div>
+      </section>
+    </div>
+  </main>
 </body>
 </html>

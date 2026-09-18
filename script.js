@@ -5,6 +5,14 @@
 
 
 /* =========================================================
+   STORAGE SAFETY
+   ========================================================= */
+
+// The previous prototype used this legacy key. Remove it once so
+// stale test listings from an older build cannot leak into this build.
+localStorage.removeItem("campusMarketplaceListings");
+
+/* =========================================================
    PRODUCT DATA
    ========================================================= */
 
@@ -18,6 +26,9 @@ const products = [
     { id: 7, name: "Casio FX-991ES Plus", price: 500, category: "Supplies", location: "Near Library", condition: "Used", rating: 4.8, image: "https://images.unsplash.com/photo-1596495578061-4e5d5d4f1b8f?auto=format&fit=crop&w=700&q=80" },
     { id: 8, name: "Calculus Textbook", price: 230, category: "Books", location: "Near Engineering", condition: "Used", rating: 4.7, image: "https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80" }
 ];
+
+const savedListings = JSON.parse(localStorage.getItem("campusMarketplaceUserListings") || "[]");
+if (Array.isArray(savedListings) && savedListings.length) products.push(...savedListings);
 
 
 /* =========================================================
@@ -2124,10 +2135,7 @@ document.addEventListener(
     }
     const target = this.dataset.nav || 'post';
     if (target === 'post' && !this.closest('[data-post-bound]')) {
-      const modal = document.getElementById('modalBackdrop');
-      if (modal) { modal.hidden = false; modal.classList.add('show'); return; }
-      if (window.location.pathname.includes('/marketplace/')) { window.scrollTo({top:0,behavior:'smooth'}); }
-      else window.location.href = 'marketplace/marketplace.html?post=1';
+      window.location.href = 'post-item/post-item.html';
     }
   });
 })();

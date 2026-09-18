@@ -1551,3 +1551,122 @@ button {
 @media (min-width: 769px) {
   .app { padding-left: 284px !important; }
 }
+
+
+/* =========================================================
+   CATEGORY ICONS — FRIENDLY, COLORFUL & CONSISTENT
+   ========================================================= */
+.category-list {
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding: 2px 2px 10px !important;
+}
+
+.category-item {
+    flex: 0 0 88px !important;
+    min-width: 88px !important;
+    min-height: 96px !important;
+    padding: 9px 7px 10px !important;
+    gap: 8px !important;
+    justify-content: flex-start !important;
+    border: 1px solid #e8ebf0 !important;
+    border-radius: 18px !important;
+    background: #fff !important;
+    box-shadow: 0 2px 7px rgba(16,24,40,.035) !important;
+    color: #344054 !important;
+}
+
+.category-item:hover {
+    transform: translateY(-2px);
+    border-color: #d5dff0 !important;
+    box-shadow: 0 7px 16px rgba(16,24,40,.08) !important;
+}
+
+.category-icon {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    margin: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    border: 0 !important;
+    border-radius: 15px !important;
+    font-size: 25px !important;
+    line-height: 1 !important;
+    font-family: "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif !important;
+    box-shadow: none !important;
+    transition: transform .18s ease !important;
+}
+
+.category-item:hover .category-icon {
+    transform: scale(1.06);
+}
+
+.category-item > span:last-child {
+    width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    text-align: center !important;
+    font-size: 11.5px !important;
+    line-height: 1.2 !important;
+    font-weight: 650 !important;
+    color: #344054 !important;
+}
+
+.category-all { background: #e9f2ff !important; }
+.category-books { background: #fff0df !important; }
+.category-electronics { background: #e9f7ee !important; }
+.category-uniforms { background: #f2eaff !important; }
+.category-supplies { background: #fff6d9 !important; }
+.category-more {
+    background: #f0f2f5 !important;
+    color: #475467 !important;
+    font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif !important;
+    font-size: 18px !important;
+    letter-spacing: 2px !important;
+    font-weight: 800 !important;
+}
+
+.category-item.active {
+    background: #f7faff !important;
+    border-color: #bcd1f5 !important;
+    color: var(--blue) !important;
+    box-shadow: 0 5px 14px rgba(20,87,217,.08) !important;
+}
+
+.category-item.active > span:last-child { color: var(--blue) !important; }
+
+@media (max-width:430px) {
+    .category-list { gap: 11px !important; }
+    .category-item {
+        flex-basis: 84px !important;
+        min-width: 84px !important;
+        min-height: 94px !important;
+    }
+    .category-icon {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        font-size: 24px !important;
+    }
+}
+
+@media (min-width:769px) {
+    .category-list {
+        gap: 14px !important;
+        overflow-x: visible !important;
+    }
+    .category-item {
+        flex: 0 0 100px !important;
+        min-width: 100px !important;
+        min-height: 104px !important;
+        padding: 10px 8px !important;
+    }
+    .category-icon {
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px !important;
+        font-size: 27px !important;
+    }
+    .category-item > span:last-child { font-size: 12px !important; }
+}
