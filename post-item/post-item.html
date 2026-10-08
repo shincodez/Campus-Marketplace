@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <script src="../js/theme.js?v=3"></script>
   <meta name="theme-color" content="#1457d9">
   <title>Post Item | NORSU Campus Marketplace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/post-item.css?v=4">
-  <link rel="stylesheet" href="../css/nav.css?v=4">
-  <link rel="stylesheet" href="../css/desktop.css?v=4">
-  <script src="../js/auth.js?v=4" data-auth="required" data-auth-reason="post"></script>
+  <link rel="stylesheet" href="../css/post-item.css?v=6">
+  <link rel="stylesheet" href="../css/nav.css?v=5">
+  <link rel="stylesheet" href="../css/desktop.css?v=5">
+  <link rel="stylesheet" href="../css/theme.css?v=5">
+  <script src="../js/auth.js?v=5" data-auth="required" data-auth-reason="post"></script>
   <script src="../js/products.js?v=4"></script>
-  <script src="../js/post-item.js?v=4" defer></script>
+  <script src="../js/category-icons.js?v=1"></script>
+  <script src="../js/post-item.js?v=7" defer></script>
 </head>
 <body>
   <main class="app post-app">
@@ -23,16 +26,16 @@
     </header>
 
     <section class="stepper" aria-label="Post item progress">
-      <div class="step active" data-step="1"><span>1</span><strong>Item Details</strong></div>
-      <div class="step-line"></div>
-      <div class="step" data-step="2"><span>2</span><strong>Photos</strong></div>
-      <div class="step-line"></div>
-      <div class="step" data-step="3"><span>3</span><strong>Additional Info</strong></div>
-      <div class="step-line"></div>
-      <div class="step" data-step="4"><span>4</span><strong>Review</strong></div>
+      <button class="step active" data-step="1" type="button" aria-current="step"><span class="step-dot"><b>1</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><strong>Item Details</strong><span class="sr-only step-state">, current step</span></button>
+      <div class="step-line" aria-hidden="true"></div>
+      <button class="step" data-step="2" type="button"><span class="step-dot"><b>2</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><strong>Photos</strong><span class="sr-only step-state"></span></button>
+      <div class="step-line" aria-hidden="true"></div>
+      <button class="step" data-step="3" type="button"><span class="step-dot"><b>3</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><strong>Additional Info</strong><span class="sr-only step-state"></span></button>
+      <div class="step-line" aria-hidden="true"></div>
+      <button class="step" data-step="4" type="button"><span class="step-dot"><b>4</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><strong>Review</strong><span class="sr-only step-state"></span></button>
     </section>
 
-    <form id="postForm" novalidate>
+    <form id="postForm" novalidate autocomplete="off">
       <section class="form-step active" data-panel="1">
         <div class="section-heading"><h2>Photos</h2></div>
         <div class="photo-strip" id="photoStrip">
@@ -43,7 +46,7 @@
           <button class="photo-slot empty-photo" type="button" data-slot="1" aria-label="Add photo"><span>+</span></button>
           <button class="photo-slot empty-photo" type="button" data-slot="2" aria-label="Add photo"><span>+</span></button>
           <button class="photo-slot empty-photo" type="button" data-slot="3" aria-label="Add photo"><span>+</span></button>
-          <button class="photo-slot empty-photo desktop-extra" type="button" data-slot="4" aria-label="Add photo"><span>+</span></button>
+          <button class="photo-slot empty-photo" type="button" data-slot="4" aria-label="Add photo"><span>+</span></button>
         </div>
         <p class="helper">Add up to 5 photos. Your first photo will be the cover.</p>
         <input id="photoInput" type="file" accept="image/*" multiple hidden>
@@ -53,20 +56,28 @@
             <span>Item Name</span>
             <input id="itemName" name="itemName" type="text" maxlength="80" placeholder="e.g. Calculus Textbook" required>
           </label>
-          <label class="field">
-            <span>Category</span>
-            <select id="category" name="category" required>
-              <option value="Books">📚 Books</option>
-              <option value="Electronics">▣ Electronics</option>
-              <option value="Uniforms">◒ Uniforms</option>
-              <option value="Supplies">▤ Supplies</option>
-              <option value="Calculators">▦ Calculators</option>
-              <option value="Sports">◍ Sports</option>
-              <option value="Furniture">▭ Furniture</option>
-              <option value="Accessories">◠ Accessories</option>
-              <option value="Others">••• Others</option>
-            </select>
-          </label>
+          <div class="field">
+            <span id="categoryLabel">Category</span>
+            <div class="select-menu" id="categoryMenu">
+              <button class="select-trigger is-placeholder" id="categoryTrigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="categoryOptions" aria-labelledby="categoryLabel categoryValue">
+                <span class="select-icon" id="categoryIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg></span>
+                <span class="select-value" id="categoryValue">Select category</span>
+                <svg class="select-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg>
+              </button>
+              <ul class="select-options hidden" id="categoryOptions" role="listbox" aria-labelledby="categoryLabel" tabindex="-1">
+                <li class="select-option" id="category-books" role="option" data-value="Books" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v14"></path><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg></span><span>Books</span></li>
+                <li class="select-option" id="category-electronics" role="option" data-value="Electronics" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"></path></svg></span><span>Electronics</span></li>
+                <li class="select-option" id="category-uniforms" role="option" data-value="Uniforms" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg></span><span>Uniforms</span></li>
+                <li class="select-option" id="category-supplies" role="option" data-value="Supplies" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"></path><path d="m8 6 2-2"></path><path d="m18 16 2-2"></path><path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17"></path><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path><path d="m15 5 4 4"></path></svg></span><span>Supplies</span></li>
+                <li class="select-option" id="category-calculators" role="option" data-value="Calculators" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"></rect><path d="M8 6h8"></path><path d="M16 14v4"></path><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg></span><span>Calculators</span></li>
+                <li class="select-option" id="category-sports" role="option" data-value="Sports" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14.4 14.4 9.6 9.6"></path><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"></path><path d="m21.5 21.5-1.4-1.4"></path><path d="M3.9 3.9 2.5 2.5"></path><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"></path></svg></span><span>Sports</span></li>
+                <li class="select-option" id="category-furniture" role="option" data-value="Furniture" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path><path d="M3 16a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"></path><path d="M5 18v2"></path><path d="M19 18v2"></path></svg></span><span>Furniture</span></li>
+                <li class="select-option" id="category-accessories" role="option" data-value="Accessories" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg></span><span>Accessories</span></li>
+                <li class="select-option" id="category-others" role="option" data-value="Others" aria-selected="false"><span class="select-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span><span>Others</span></li>
+              </ul>
+              <input id="category" name="category" type="hidden" value="">
+            </div>
+          </div>
           <label class="field">
             <span>Condition</span>
             <select id="condition" name="condition" required>
@@ -78,7 +89,7 @@
           </label>
           <label class="field full">
             <span>Price</span>
-            <div class="input-prefix"><span>₱</span><input id="price" name="price" type="number" min="0" step="1" placeholder="0.00" required></div>
+            <div class="input-prefix"><span>₱</span><input id="price" name="price" type="number" min="0" max="999999.99" step="0.01" inputmode="decimal" placeholder="0.00" required></div>
           </label>
           <label class="field full">
             <span>Location</span>
@@ -100,13 +111,13 @@
         <fieldset class="delivery-choice">
           <legend>Delivery / Meeting Option</legend>
           <div class="choice-grid">
-            <button class="choice-card selected" type="button" data-fulfillment="meetup">
+            <button class="choice-card selected" type="button" data-fulfillment="meetup" aria-pressed="true">
               <span class="choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="2.7"></circle><circle cx="16.5" cy="9.5" r="2.2"></circle><path d="M3.5 19c.5-3.2 2.4-5 5.5-5s5 1.8 5.5 5M13 19c.4-2.5 2-4 4.5-4 2 0 3.3 1.2 3.7 4"></path></svg></span>
-              <span class="choice-copy"><strong>Meet in Person</strong><small>Meet at a safe campus location</small></span><span class="choice-check">✓</span>
+              <span class="choice-copy"><strong>Meet in Person</strong><small>Meet at a safe campus location</small></span><span class="choice-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></span>
             </button>
-            <button class="choice-card" type="button" data-fulfillment="delivery">
+            <button class="choice-card" type="button" data-fulfillment="delivery" aria-pressed="false">
               <span class="choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></span>
-              <span class="choice-copy"><strong>Delivery</strong><small>Ship or deliver to buyer</small></span><span class="choice-check"></span>
+              <span class="choice-copy"><strong>Delivery</strong><small>Ship or deliver to buyer</small></span><span class="choice-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></span>
             </button>
           </div>
         </fieldset>
@@ -131,7 +142,7 @@
           <h3>Delivery Details</h3>
           <div class="field-grid two">
             <label class="field"><span>Delivery Area</span><select id="deliveryArea"><option>Within campus</option><option>Campus + nearby area</option><option>Seller-defined area</option></select></label>
-            <label class="field"><span>Delivery Fee</span><div class="input-prefix"><span>₱</span><input id="deliveryFee" type="number" min="0" step="1" value="0"></div></label>
+            <label class="field"><span>Delivery Fee</span><div class="input-prefix"><span>₱</span><input id="deliveryFee" type="number" min="0" max="999999.99" step="0.01" inputmode="decimal" value="0"></div></label>
             <label class="field full"><span>Who pays the delivery fee?</span><select id="deliveryPayer"><option value="buyer">Buyer pays</option><option value="seller">Seller pays</option><option value="included">Included in item price</option></select></label>
             <label class="field full"><span>Delivery Notes</span><textarea id="deliveryNotes" maxlength="300" rows="4" placeholder="e.g. Delivery available after 4 PM on weekdays."></textarea></label>
           </div>
@@ -146,7 +157,7 @@
           </div>
         </div>
 
-        <div class="info-card"><span class="info-icon">i</span><div><strong>Privacy reminder</strong><p>Do not include your home address, personal phone number, passwords, or other sensitive information in your listing.</p></div></div>
+        <div class="info-card"><span class="info-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg></span><div><strong>Privacy reminder</strong><p>Do not include your home address, personal phone number, passwords, or other sensitive information in your listing.</p></div></div>
       </section>
 
       <section class="form-step" data-panel="4">
@@ -165,9 +176,9 @@
       </div>
     </form>
 
-    <div class="success-overlay hidden" id="successOverlay" role="dialog" aria-modal="true">
+    <div class="success-overlay hidden" id="successOverlay" role="dialog" aria-modal="true" aria-labelledby="successTitle">
       <div class="success-card">
-        <div class="success-icon">✓</div><h2>Item Posted!</h2><p>Your listing has been saved. Buyers can now find it in the Marketplace.</p>
+        <div class="success-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div><h2 id="successTitle">Item Posted!</h2><p id="successText">Your listing has been saved. Buyers can now find it in the Marketplace.</p>
         <div class="success-actions"><button class="primary-button" id="viewMarketplace" type="button">View Marketplace</button><button class="secondary-button" id="postAnother" type="button">Post Another Item</button></div>
       </div>
     </div>

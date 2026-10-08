@@ -1,0 +1,182 @@
+/* =========================================================
+   NORSU CAMPUS MARKETPLACE — THEME SWITCH + DARK MODE TOUCH-UPS
+   Loaded last on every page, after js/theme.js has set
+   <html data-theme="light|dark">.
+
+   Most of dark mode is generated at the end of each stylesheet
+   (python tools/dark-theme.py). This file holds the switch itself
+   and the few things a straight color swap can't get right.
+   ========================================================= */
+
+:root { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+
+/* Switch all colors in one frame instead of letting transitions trail. */
+.theme-switching,
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after { transition: none !important; }
+
+/* Circular reveal when a switch is pressed (js/theme.js): the new theme is a
+   circle that grows from the switch over the old one. No default cross-fade. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+
+
+/* ---------- Switch (profile menu, desktop sidebar) ---------- */
+
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-family: inherit; /* size and weight come from where it sits (menu row, sidebar) */
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-switch svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-switch-label { flex: 1; }
+
+.theme-switch-track {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #d0d5dd;
+  transition: background .2s;
+}
+
+.theme-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, .25);
+  transition: transform .2s;
+}
+
+.theme-switch[aria-checked="true"] .theme-switch-track { background: #1457d9; }
+.theme-switch[aria-checked="true"] .theme-switch-thumb { transform: translateX(14px); }
+.theme-switch:focus-visible { outline: 2px solid #1457d9; outline-offset: 2px; }
+
+/* Desktop sidebar, above About / Campus Tour / Terms. */
+.bottom-nav .nav-theme-switch {
+  margin: 0 0 12px;
+  padding: 6px 0;
+  border: 0;
+  background: none;
+  color: #667085;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.bottom-nav .nav-theme-switch:hover { color: #1457d9; }
+
+/* Login page: round button in the corner opposite the back arrow. */
+.login-page { position: relative; }
+
+.theme-fab {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e4e7ec;
+  border-radius: 50%;
+  background: #fff;
+  color: #344054;
+  cursor: pointer;
+}
+
+.theme-fab svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-fab:hover { color: #1457d9; border-color: #c9d9f7; }
+.theme-fab:focus-visible { outline: 2px solid #1457d9; outline-offset: 2px; }
+
+@media (min-width: 900px) {
+  .login-page .theme-fab { top: 18px; right: 18px; }
+}
+
+
+/* =========================================================
+   DARK MODE TOUCH-UPS
+   ========================================================= */
+
+/* Used by inline styles that scripts write, e.g. color:var(--theme-muted, #667085).
+   Light mode leaves them unset, so the fallback (the original color) applies. */
+:root[data-theme="dark"] {
+  --theme-text: #d8dce5;
+  --theme-muted: #9ba3b2;
+  --theme-surface: #171b24;
+  --theme-toast: #2b3446;
+  --theme-danger: #f0857c;
+  --theme-danger-border: #5b2a2a;
+}
+
+:root[data-theme="dark"] .theme-switch-track { background: #3a4458; }
+:root[data-theme="dark"] .theme-switch[aria-checked="true"] .theme-switch-track { background: #3b74f0; }
+:root[data-theme="dark"] .bottom-nav .nav-theme-switch { color: #9ba3b2; }
+:root[data-theme="dark"] .bottom-nav .nav-theme-switch:hover { color: #6796f1; }
+
+:root[data-theme="dark"] .theme-fab { border-color: #2b3241; background: #171b24; color: #d8dce5; }
+:root[data-theme="dark"] .theme-fab:hover { color: #f5c451; border-color: #394356; }
+
+/* Fields with no background of their own would get the browser's flat gray dark default.
+   Wrapped in :where() so it has no specificity: any styled field keeps its own look. */
+:where(:root[data-theme="dark"]) :where(input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"], [type="file"]), textarea, select) {
+  background-color: #171b24;
+  color: #d8dce5;
+}
+
+/* Generated "no photo" placeholders (light gray card + blue label): flip to dark. */
+:root[data-theme="dark"] img[src^="data:image/svg+xml"],
+:root[data-theme="dark"] img[src$="placeholder.svg"] {
+  filter: invert(1) hue-rotate(180deg) brightness(.92);
+}
+
+/* Login illustration: soften the white backdrop and book pages so they don't glare. */
+:root[data-theme="dark"] .graduation-svg [fill="#eef5ff"] { fill: rgba(103, 150, 241, .12); }
+:root[data-theme="dark"] .graduation-svg [fill="#ffffff"] { fill: #d5def0; }
+:root[data-theme="dark"] .graduation-svg [stroke="#0b43a5"] { stroke: #2f66d6; }
+
+/* Browser autofill keeps its own light fill otherwise. */
+:root[data-theme="dark"] input:-webkit-autofill,
+:root[data-theme="dark"] input:-webkit-autofill:hover,
+:root[data-theme="dark"] input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #e4e8ef;
+  -webkit-box-shadow: 0 0 0 1000px #1b2130 inset;
+  caret-color: #e4e8ef;
+}
+
+:root[data-theme="dark"] ::placeholder { color: #747e8f; }

@@ -26,6 +26,7 @@
         user: svg('<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'),
         listings: svg('<path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/>'),
         logout: svg('<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/>'),
+        shield: svg('<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>'),
         login: svg('<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" x2="3" y1="12" y2="12"/>'),
         signup: svg('<circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/>')
     };
@@ -117,11 +118,16 @@
     }
 
 
+    /* Dark mode switch (js/theme.js), just above Log Out. */
+    const themeSwitch = () => window.CampusTheme ? CampusTheme.switchHTML("hdr-menu-item") : "";
+
+
     function showProfile(button) {
         const user = CampusAuth.user;
 
         const menu = user
             ? [
+                ...(user.role === "admin" ? [["admin", "shield", "Admin Dashboard"]] : []),
                 ["profile", "user", "View Profile"],
                 ["listings", "listings", "My Listings"],
                 ["logout", "logout", "Log Out", "danger"]
@@ -142,10 +148,12 @@
                 </div>
                 <div class="hdr-menu">
                     ${menu.map(([action, icon, label, tone]) => `
+                    ${action === "logout" ? themeSwitch() : ""}
                     <button class="hdr-menu-item${tone ? ` ${tone}` : ""}" type="button" data-action="${action}">
                         ${ICONS[icon]}
                         <span>${label}</span>
                     </button>`).join("")}
+                    ${user ? "" : themeSwitch()}
                 </div>
             </div>
             <div class="hdr-panel-footer">
@@ -159,6 +167,7 @@
             item.addEventListener("click", () => {
                 const action = item.dataset.action;
 
+                if (action === "admin") go(CampusAuth.url("admin/admin.html"));
                 if (action === "profile") go(CampusAuth.url("profile/profile.html"));
                 if (action === "listings") go(CampusAuth.url("profile/profile.html?open=listings"));
                 if (action === "login") go(CampusAuth.loginUrl());

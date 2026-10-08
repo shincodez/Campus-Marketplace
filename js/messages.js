@@ -101,19 +101,22 @@ document.addEventListener("DOMContentLoaded", () => {
   // The item a message is about. The seller can mark it sold right here.
   function itemCard(item) {
     const sold = item.status === "sold";
+    // Not in the Marketplace right now: waiting for review or taken down by an administrator.
+    const hidden = item.status === "pending" || item.status === "removed";
+    const statusLabel = { sold: "Sold", pending: "Pending review", removed: "Unavailable" }[item.status] || "Available";
     const isSeller = CampusAuth.user && item.sellerId === CampusAuth.user.id;
 
-    const action = isSeller
+    const action = hidden ? "" : isSeller
       ? `<button class="msg-item-button${sold ? " secondary" : ""}" type="button" data-mark="${sold ? "available" : "sold"}" data-listing="${item.id}">${sold ? "Mark as available" : "Mark as sold"}</button>`
       : `<a class="msg-item-button secondary" href="../marketplace/marketplace.html?item=${encodeURIComponent(item.id)}">View item</a>`;
 
     return `
-          <div class="msg-item${sold ? " sold" : ""}">
+          <div class="msg-item${sold || hidden ? " sold" : ""}">
             <img class="msg-item-photo" src="${escapeHTML(item.image || CampusCatalog.placeholder(item.category))}" alt="" data-category="${escapeHTML(item.category)}">
             <div class="msg-item-info">
               <strong>${escapeHTML(item.name)}</strong>
               <span>${escapeHTML(money(item.price))}</span>
-              <small class="msg-item-status ${sold ? "sold" : "available"}">${sold ? "Sold" : "Available"}</small>
+              <small class="msg-item-status ${sold || hidden ? "sold" : "available"}">${statusLabel}</small>
             </div>
             ${action}
           </div>`;

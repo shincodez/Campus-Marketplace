@@ -79,6 +79,7 @@ function api_user(array $user): array
         'campus'    => $user['campus'],
         'joined'    => format_month_year($user['created_at']),
         'verified'  => (bool) $user['is_verified'],
+        'role'      => $user['role'] ?? 'student',
     ];
 }
 

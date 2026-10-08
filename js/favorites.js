@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("browseButton").addEventListener("click",()=>location.href="../marketplace/marketplace.html");
   document.querySelectorAll("[data-nav]").forEach(btn=>btn.addEventListener("click",()=>{const n=btn.dataset.nav;if(n==="home")location.href="../index.html";if(n==="marketplace")location.href="../marketplace/marketplace.html";if(n==="profile")location.href="../profile/profile.html";if(n==="messages")location.href="../messages/messages.html";if(n==="post")location.href="../post-item/post-item.html"}));
   count.textContent="Loading…";
-  CampusCatalog.load().then(items=>{products.push(...items);render();},error=>{count.textContent="";list.innerHTML=`<p style="padding:30px 0;color:#667085;text-align:center">Items couldn't load. ${escape(error.message)}</p>`;});
+  CampusCatalog.load().then(items=>{products.push(...items);render();},error=>{count.textContent="";list.innerHTML=`<p style="padding:30px 0;color:var(--theme-muted, #667085);text-align:center">Items couldn't load. ${escape(error.message)}</p>`;});
 });
 
 

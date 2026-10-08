@@ -42,6 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // My listings live in the database, like everyone else's (../products.js).
   let myListings = [];
   const isSold = (item) => String(item.status || "").toLowerCase() === "sold";
+  // Pending = waiting for an administrator; removed = taken down by one. Neither can be toggled here.
+  const STATUS_LABELS = { available: "Available", sold: "Sold", pending: "Pending review", removed: "Removed by admin" };
+  const listingStatus = (item) => (STATUS_LABELS[item.status] ? item.status : "available");
   const soldCount = () => myListings.filter(isSold).length;
   const listingsReady = CampusCatalog.mine().then(
     (items) => { myListings = items; $("#soldCount").textContent = soldCount(); },
@@ -148,16 +151,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const listingMarkup = myListings.map((item) => {
       const sold = isSold(item);
+      const status = listingStatus(item);
+      const canToggle = status === "available" || status === "sold";
       return `
         <article class="listing-manager-item" data-listing-id="${escapeHTML(item.id)}">
           <img src="${escapeHTML(item.image || "")}" alt="${escapeHTML(item.name || "Listing")}" class="listing-manager-image">
           <div class="listing-manager-info">
             <strong>${escapeHTML(item.name || "Untitled item")}</strong>
             <span>${escapeHTML(money(Number(item.price) || 0))} · ${escapeHTML(item.category || "Others")} · ${Number(item.views || 0)} views</span>
-            <small class="listing-status ${sold ? "sold" : "available"}">${sold ? "Sold" : "Available"}</small>
+            <small class="listing-status ${status}">${STATUS_LABELS[status]}</small>
           </div>
           <div class="listing-manager-actions">
-            <button class="listing-status-button" data-toggle-listing="${escapeHTML(item.id)}" type="button">${sold ? "Mark available" : "Mark sold"}</button>
+            ${canToggle ? `<button class="listing-status-button" data-toggle-listing="${escapeHTML(item.id)}" type="button">${sold ? "Mark available" : "Mark sold"}</button>` : ""}
             <button class="listing-delete-button" data-delete-listing="${escapeHTML(item.id)}" type="button">Remove</button>
           </div>
         </article>`;
