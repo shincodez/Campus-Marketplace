@@ -811,7 +811,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p
                     style="
                         margin-top:18px;
-                        color:#667085;
+                        color:var(--theme-muted, #667085);
                         font-size:14px;
                         line-height:1.6;
                     "
@@ -1755,7 +1755,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     style="
                         padding:70px 20px;
                         text-align:center;
-                        color:#667085;
+                        color:var(--theme-muted, #667085);
                     "
                 >
 
@@ -1770,7 +1770,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     <h3
                         style="
-                            color:#101828;
+                            color:var(--theme-text, #101828);
                             font-size:20px;
                         "
                     >

@@ -3,9 +3,11 @@
  * Marketplace listings (the `listings` and `listing_images` tables), so an
  * item one student posts is seen — and can be messaged — by everyone.
  *
- * GET                       every listing, newest first (anyone can browse)
- * GET  ?mine=1              the logged-in student's own listings
- * POST action=create        new listing (multipart form, photos[] up to 5)
+ * GET                       every public listing, newest first (anyone can browse)
+ * GET  ?mine=1              the logged-in student's own listings, including
+ *                           pending (waiting for review) and removed ones
+ * POST action=create        new listing (multipart form, photos[] up to 5); goes
+ *                           to "pending" when admins review new listings first
  * POST action=status        {id, status: "available" | "sold"}   owner only
  * POST action=delete        {id}                                 owner only
  * POST action=view          {id}   counts one view per visitor (for "Popular")
@@ -13,6 +15,9 @@
 require dirname(__DIR__) . '/includes/api.php';
 
 const MAX_LISTING_PRICE = 999999.99;
+
+/** What the Marketplace shows: approved listings from accounts in good standing. */
+const PUBLIC_LISTINGS = "l.status IN ('available', 'sold') AND u.status = 'active'";
 
 
 function listing_payload(array $row, array $images): array
@@ -118,7 +123,7 @@ if (!is_post()) {
         $me = require_login();
         json_response(['ok' => true, 'items' => load_listings('l.user_id = ?', [(int) $me['id']])]);
     }
-    json_response(['ok' => true, 'items' => load_listings()]);
+    json_response(['ok' => true, 'items' => load_listings(PUBLIC_LISTINGS)]);
 }
 
 
@@ -149,6 +154,12 @@ $me = require_login();
 // ---- Mark sold / available --------------------------------------------------
 if ($action === 'status') {
     $listing = own_listing($me);
+    if ($listing['status'] === 'pending') {
+        api_fail('This listing is waiting for an administrator to approve it.', 'status', 409);
+    }
+    if ($listing['status'] === 'removed') {
+        api_fail('This listing was removed by an administrator.', 'status', 409);
+    }
     $status = api_string('status');
     if (!in_array($status, ['available', 'sold'], true)) {
         api_fail('Choose available or sold.', 'status');
@@ -185,7 +196,7 @@ if ($titleLength < 3 || $titleLength > 80) {
     api_fail($titleLength === 0 ? 'Please enter an item name.' : 'Item name must be between 3 and 80 characters.', 'itemName');
 }
 
-$categoryId = (int) db_value('SELECT id FROM categories WHERE name = ?', [api_string('category')], 0);
+$categoryId = (int) db_value('SELECT id FROM categories WHERE name = ? AND is_active = 1', [api_string('category')], 0);
 if (!$categoryId) {
     api_fail('Choose a category.', 'category');
 }
@@ -256,18 +267,22 @@ foreach ($files as $file) {
     $stored[] = $result['path'];
 }
 
+// Settings → "Review new listings": new posts wait for an administrator.
+$needsReview = setting('review_listings', '0') === '1';
+
 $pdo = db();
 $pdo->beginTransaction();
 try {
     $listingId = db_insert(
         'INSERT INTO listings (user_id, category_id, title, description, price, item_condition, location, fulfillment,
                                meetup_location, meetup_availability, meetup_safety,
-                               delivery_area, delivery_fee, delivery_payer, delivery_notes)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                               delivery_area, delivery_fee, delivery_payer, delivery_notes, status)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
         [
             $me['id'], $categoryId, $title, $description === '' ? null : $description, $price, $condition, $location, $fulfillment,
             $handoff['meetup_location'], $handoff['meetup_availability'], $handoff['meetup_safety'],
             $handoff['delivery_area'], $handoff['delivery_fee'], $handoff['delivery_payer'], $handoff['delivery_notes'],
+            $needsReview ? 'pending' : 'available',
         ]
     );
     foreach ($stored as $order => $path) {
@@ -285,5 +300,7 @@ try {
 json_response([
     'ok'      => true,
     'item'    => load_listings('l.id = ?', [$listingId])[0],
-    'message' => 'Your item is now live in the Marketplace.',
+    'message' => $needsReview
+        ? 'Submitted for review. It will appear in the Marketplace once an administrator approves it.'
+        : 'Your item is now live in the Marketplace.',
 ], 201);

@@ -70,6 +70,7 @@ const LOGIN_REASONS = {
     post: "Log in to post an item.",
     profile: "Log in to view your profile.",
     messages: "Log in to message sellers.",
+    admin: "Log in with an administrator account.",
     signedout: "You have been signed out."
 };
 

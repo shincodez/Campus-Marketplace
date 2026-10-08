@@ -10,6 +10,7 @@
    Load it in each page's <head>, before the page script:
      <script src="../js/auth.js"></script>                       anyone can view
      <script src="../js/auth.js" data-auth="required"></script>  logged-in students only
+     <script src="../js/auth.js" data-auth="admin"></script>     administrators only
      <script src="../js/auth.js" data-auth="guest"></script>     login page
 ========================================================= */
 
@@ -182,7 +183,8 @@
             } catch { /* ignore a malformed ?next= */ }
         }
 
-        return new URL("index.html", root).href;
+        // Administrators start on their dashboard; students on Home.
+        return new URL(auth.user?.role === "admin" ? "admin/admin.html" : "index.html", root).href;
     }
 
 
@@ -214,13 +216,13 @@
             notice.style.cssText = [
                 "position:fixed", "top:16px", "left:50%", "transform:translateX(-50%)",
                 "z-index:10000", "visibility:visible", "width:min(560px,calc(100% - 32px))",
-                "padding:16px 18px", "border-radius:16px", "border:1.5px solid #f5c2c0",
-                "background:#fff", "color:#101828", "box-shadow:0 12px 32px rgba(16,24,40,.16)",
+                "padding:16px 18px", "border-radius:16px", "border:1.5px solid var(--theme-danger-border, #f5c2c0)",
+                "background:var(--theme-surface, #fff)", "color:var(--theme-text, #101828)", "box-shadow:0 12px 32px rgba(16,24,40,.16)",
                 "font:500 15px/1.5 Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif"
             ].join(";");
 
             const title = document.createElement("strong");
-            title.style.cssText = "display:block;margin-bottom:4px;color:#b42318";
+            title.style.cssText = "display:block;margin-bottom:4px;color:var(--theme-danger, #b42318)";
             title.textContent = "Accounts are unavailable";
 
             const text = document.createElement("span");
@@ -275,7 +277,12 @@
             data => {
                 const changed = setUser(data.user);
 
-                if (mode === "required" && !auth.user) {
+                if (mode === "admin" && auth.user && auth.user.role !== "admin") {
+                    location.replace(new URL("index.html", root).href);
+                    return pending;
+                }
+
+                if ((mode === "required" || mode === "admin") && !auth.user) {
                     location.replace(loginUrl(reason));
                     return pending;
                 }
@@ -297,7 +304,7 @@
             },
             error => {
                 showServerNotice(error);
-                if (mode !== "required") showPage();
+                if (mode !== "required" && mode !== "admin") showPage();
                 return null;
             }
         );
@@ -382,7 +389,7 @@
     window.CampusAuth = auth;
 
 
-    if (mode === "required" || (mode === "guest" && auth.user)) hidePage();
+    if (mode === "required" || mode === "admin" || (mode === "guest" && auth.user)) hidePage();
 
     auth.ready = verify();
 
@@ -390,7 +397,7 @@
     /* Back/forward cache: re-check so a signed-out page can't be revisited. */
     window.addEventListener("pageshow", event => {
         if (!event.persisted) return;
-        if (mode === "required") hidePage();
+        if (mode === "required" || mode === "admin") hidePage();
         auth.ready = verify();
     });
 

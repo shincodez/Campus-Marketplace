@@ -36,3 +36,16 @@ because accounts are checked by PHP and stored in MySQL.
 
 All three use the password `password123`. Change it after deploying. Maria Santos is the seller of the
 23 listings in the database. Anyone can create a new account with **Sign Up**.
+
+## Administrators
+
+Admins log in on the same page as students and land on the admin dashboard (`admin/admin.html`), where they
+manage users, listings, categories and settings. To make the first admin, sign up (or pick an existing
+account) and run this from the project folder:
+
+```powershell
+C:\xampp\php\php.exe tools\make-admin.php you@campus.edu
+```
+
+After that, admins can add more admins from **Users → Add User**. The database columns the dashboard needs are
+added automatically the first time the site runs, so an existing database doesn't need to be re-imported.

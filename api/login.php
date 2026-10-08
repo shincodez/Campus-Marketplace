@@ -23,6 +23,9 @@ $user = db_one('SELECT * FROM users WHERE email = ? OR student_id = ? LIMIT 1', 
 
 if ($user && password_verify($password, $user['password_hash'])) {
     unset($_SESSION['login_failures'], $_SESSION['login_locked_until']);
+    if (is_suspended($user)) {
+        api_fail('This account has been suspended. Please contact the marketplace administrator.', 'identifier', 403, ['code' => 'suspended']);
+    }
     if (password_needs_rehash($user['password_hash'], PASSWORD_DEFAULT)) {
         db_exec('UPDATE users SET password_hash = ? WHERE id = ?', [password_hash($password, PASSWORD_DEFAULT), $user['id']]);
     }

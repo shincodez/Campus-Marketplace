@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <script src="../js/theme.js?v=3"></script>
+  <meta name="theme-color" content="#0f2152">
+  <meta name="robots" content="noindex">
+  <title>Admin Dashboard | NORSU Campus Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/admin.css?v=6">
+  <link rel="stylesheet" href="../css/theme.css?v=5">
+  <script src="../js/auth.js?v=5" data-auth="admin" data-auth-reason="admin"></script>
+  <script src="../js/category-icons.js?v=1"></script>
+  <script src="../js/admin.js?v=3" defer></script>
+</head>
+<body>
+  <a class="admin-skip" href="#adminContent">Skip to content</a>
+
+  <div class="admin-app">
+
+    <!-- ========== SIDEBAR (drawer on tablets and phones) ========== -->
+    <aside class="admin-sidebar" id="adminSidebar" aria-label="Administrator menu">
+      <div class="admin-brand">
+        <span class="admin-brand-campus">NORSU CAMPUS</span>
+        <span class="admin-brand-marketplace">MARKETPLACE</span>
+        <span class="admin-brand-tag">Admin Console</span>
+      </div>
+
+      <p class="admin-menu-label">Main menu</p>
+      <nav class="admin-nav" aria-label="Admin sections">
+        <a href="#dashboard" data-nav="dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg><span>Dashboard</span></a>
+        <a href="#users" data-nav="users"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Users</span></a>
+        <a href="#listings" data-nav="listings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg><span>Listings</span><b class="admin-nav-badge" id="pendingBadge" hidden></b></a>
+        <a href="#categories" data-nav="categories"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg><span>Categories</span></a>
+        <a href="#reports" data-nav="reports"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg><span>Reports / Activity</span></a>
+        <a href="#settings" data-nav="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span>Settings</span></a>
+      </nav>
+
+      <div class="admin-account">
+        <span class="admin-avatar" id="adminAvatar" aria-hidden="true">AD</span>
+        <div class="admin-account-text">
+          <strong id="adminName">Administrator</strong>
+          <small>Administrator</small>
+        </div>
+        <button class="admin-account-button" id="accountButton" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="accountMenu" aria-label="Account options">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+        </button>
+        <div class="admin-popover" id="accountMenu" hidden>
+          <a class="admin-popover-item" href="../index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-6h5v6"/></svg><span>Open student site</span></a>
+          <div id="accountThemeSlot"></div>
+          <button class="admin-popover-item danger" type="button" data-logout><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg><span>Log out</span></button>
+        </div>
+      </div>
+    </aside>
+    <div class="admin-scrim" id="sidebarScrim" hidden></div>
+
+
+    <div class="admin-main">
+
+      <!-- ========== HEADER ========== -->
+      <header class="admin-header" id="adminHeader">
+        <button class="admin-icon-button admin-menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="adminSidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+        </button>
+        <div class="admin-header-title">
+          <h1 id="pageTitle">Administrator Dashboard</h1>
+          <p id="pageSubtitle">Welcome back, Admin</p>
+        </div>
+        <form class="admin-global-search" id="globalSearch" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="globalSearchInput" type="search" placeholder="Search marketplace..." aria-label="Search listings and users" autocomplete="off">
+          <kbd id="searchShortcut">Ctrl K</kbd>
+        </form>
+        <button class="admin-icon-button admin-search-toggle" id="searchToggle" type="button" aria-label="Search" aria-expanded="false" aria-controls="globalSearch">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="admin-icon-button admin-bell" id="bellButton" type="button" aria-label="Listings waiting for review">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          <span class="admin-dot" id="bellDot" hidden></span>
+        </button>
+      </header>
+
+
+      <main class="admin-content" id="adminContent" tabindex="-1">
+
+        <!-- ========== DASHBOARD ========== -->
+        <section class="admin-section" data-section="dashboard" aria-labelledby="overviewHeading">
+          <div class="admin-section-head">
+            <div>
+              <h2 id="overviewHeading">Marketplace Overview</h2>
+              <p>Here's what's happening across Campus Marketplace today.</p>
+            </div>
+            <select class="admin-select" id="overviewRange" aria-label="Time period">
+              <option value="7">Last 7 days</option>
+              <option value="30" selected>Last 30 days</option>
+              <option value="90">Last 90 days</option>
+              <option value="365">Last 12 months</option>
+            </select>
+          </div>
+
+          <div class="admin-stats" id="overviewStats"></div>
+
+          <div class="admin-dashboard-grid">
+            <article class="admin-card">
+              <div class="admin-card-head">
+                <div><h3>Recent Listings</h3><p>Latest items submitted by students</p></div>
+                <a class="admin-link" href="#listings">View all listings <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+              </div>
+              <div id="recentListings" class="admin-table-wrap"></div>
+            </article>
+
+            <article class="admin-card">
+              <div class="admin-card-head">
+                <div><h3>Recent Activity</h3><p>Latest marketplace updates</p></div>
+              </div>
+              <ol class="admin-timeline" id="recentActivity"></ol>
+              <a class="admin-link admin-card-foot" href="#reports">View all activity <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+            </article>
+          </div>
+        </section>
+
+
+        <!-- ========== USERS ========== -->
+        <section class="admin-section" data-section="users" aria-labelledby="usersHeading" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 id="usersHeading">Manage Users</h2>
+              <p>View and manage registered students and administrators.</p>
+            </div>
+            <button class="admin-button primary" id="addUserButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Add User
+            </button>
+          </div>
+
+          <article class="admin-card">
+            <div class="admin-toolbar">
+              <label class="admin-search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input id="userSearch" type="search" placeholder="Search by name, email or student ID..." aria-label="Search users" autocomplete="off">
+              </label>
+              <div class="admin-filters">
+                <select class="admin-select" id="userStatus" aria-label="Filter by status">
+                  <option value="">All statuses</option>
+                  <option value="active">Active</option>
+                  <option value="suspended">Suspended</option>
+                </select>
+                <select class="admin-select" id="userRole" aria-label="Filter by role">
+                  <option value="">All roles</option>
+                  <option value="student">Students</option>
+                  <option value="admin">Administrators</option>
+                </select>
+              </div>
+            </div>
+            <div id="usersTable" class="admin-table-wrap"></div>
+            <div class="admin-pagination" id="usersPaging"></div>
+          </article>
+        </section>
+
+
+        <!-- ========== LISTINGS ========== -->
+        <section class="admin-section" data-section="listings" aria-labelledby="listingsHeading" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 id="listingsHeading">Manage Listings</h2>
+              <p>Review and manage marketplace listings.</p>
+            </div>
+          </div>
+
+          <article class="admin-card">
+            <div class="admin-toolbar admin-toolbar-stacked">
+              <label class="admin-search-field">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input id="listingSearch" type="search" placeholder="Search listings or sellers..." aria-label="Search listings" autocomplete="off">
+              </label>
+              <div class="admin-filters admin-filters-3">
+                <select class="admin-select" id="listingCategory" aria-label="Filter by category">
+                  <option value="">All categories</option>
+                </select>
+                <select class="admin-select" id="listingStatus" aria-label="Filter by status">
+                  <option value="">All statuses</option>
+                  <option value="available">Active</option>
+                  <option value="pending">Pending review</option>
+                  <option value="sold">Sold</option>
+                  <option value="removed">Removed</option>
+                </select>
+                <select class="admin-select" id="listingDays" aria-label="Filter by date posted">
+                  <option value="">All dates</option>
+                  <option value="7">Last 7 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 90 days</option>
+                </select>
+              </div>
+            </div>
+            <div id="listingsTable" class="admin-table-wrap"></div>
+            <div class="admin-pagination" id="listingsPaging"></div>
+          </article>
+        </section>
+
+
+        <!-- ========== CATEGORIES ========== -->
+        <section class="admin-section" data-section="categories" aria-labelledby="categoriesHeading" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 id="categoriesHeading">Manage Categories</h2>
+              <p>Organize marketplace items into categories.</p>
+            </div>
+            <button class="admin-button primary" id="addCategoryButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Add Category
+            </button>
+          </div>
+          <p class="admin-info-bar" id="categorySummary"></p>
+          <div class="admin-category-grid" id="categoryGrid"></div>
+        </section>
+
+
+        <!-- ========== REPORTS & ACTIVITY ========== -->
+        <section class="admin-section" data-section="reports" aria-labelledby="reportsHeading" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 id="reportsHeading">Reports &amp; Activity</h2>
+              <p>Monitor marketplace activity and system activity.</p>
+            </div>
+            <select class="admin-select" id="reportRange" aria-label="Time period">
+              <option value="12" selected>Last 12 months</option>
+              <option value="6">Last 6 months</option>
+            </select>
+          </div>
+
+          <div class="admin-stats" id="reportStats"></div>
+
+          <article class="admin-card">
+            <div class="admin-card-head">
+              <div><h3>Marketplace Activity</h3><p id="chartSubtitle">Listings created over the last 12 months</p></div>
+              <div class="admin-chart-legend"><span><i></i>New listings</span><strong id="chartTotal">0 total</strong></div>
+            </div>
+            <div class="admin-chart" id="activityChart"></div>
+          </article>
+
+          <article class="admin-card">
+            <div class="admin-card-head">
+              <div><h3>Activity Log</h3><p>Recent administrative and marketplace events</p></div>
+              <label class="admin-filter-button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>
+                <select id="activityType" aria-label="Filter activity">
+                  <option value="all">All activity</option>
+                  <option value="students">Students</option>
+                  <option value="admins">Administrators</option>
+                  <option value="listings">Listings</option>
+                </select>
+              </label>
+            </div>
+            <div id="activityTable" class="admin-table-wrap"></div>
+            <div class="admin-pagination" id="activityPaging"></div>
+          </article>
+        </section>
+
+
+        <!-- ========== SETTINGS ========== -->
+        <section class="admin-section" data-section="settings" aria-labelledby="settingsHeading" hidden>
+          <div class="admin-section-head">
+            <div>
+              <h2 id="settingsHeading">Settings</h2>
+              <p>Marketplace rules and your administrator account.</p>
+            </div>
+          </div>
+
+          <div class="admin-settings">
+            <article class="admin-card admin-setting">
+              <span class="admin-tile tone-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <div class="admin-setting-text">
+                <h3>Review new listings</h3>
+                <p>New listings wait in <strong>Listings → Pending review</strong> until an administrator approves them. When this is off, items go live as soon as they're posted.</p>
+                <p class="admin-setting-note" id="pendingNote"></p>
+              </div>
+              <button class="admin-switch" id="reviewSwitch" type="button" role="switch" aria-checked="false" aria-label="Review new listings"><span></span></button>
+            </article>
+
+            <article class="admin-card admin-setting">
+              <span class="admin-tile tone-purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+              <div class="admin-setting-text">
+                <h3>Appearance</h3>
+                <p>Dark mode for this browser. It applies to the student site too.</p>
+              </div>
+              <div id="settingsThemeSlot"></div>
+            </article>
+
+            <article class="admin-card admin-setting">
+              <span class="admin-avatar admin-avatar-lg" id="settingsAvatar" aria-hidden="true">AD</span>
+              <div class="admin-setting-text">
+                <h3 id="settingsName">Administrator</h3>
+                <p id="settingsEmail"></p>
+              </div>
+              <div class="admin-setting-actions">
+                <a class="admin-button" href="../index.html">Open student site</a>
+                <button class="admin-button danger" type="button" data-logout>Log out</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- ========== DIALOG (view, edit, confirm) ========== -->
+  <div class="admin-modal-backdrop" id="modalBackdrop" hidden>
+    <div class="admin-modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="admin-modal-head">
+        <h2 id="modalTitle">Details</h2>
+        <button class="admin-icon-button admin-modal-close" id="modalClose" type="button" aria-label="Close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body" id="modalBody"></div>
+      <div class="admin-modal-actions" id="modalActions"></div>
+    </div>
+  </div>
+
+  <div class="admin-toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

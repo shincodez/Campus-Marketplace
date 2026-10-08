@@ -12,12 +12,33 @@ function current_user(): ?array
         $user = null;
         if (!empty($_SESSION['user_id'])) {
             $user = db_one('SELECT * FROM users WHERE id = ?', [(int) $_SESSION['user_id']]);
-            if ($user === null) {
-                unset($_SESSION['user_id']); // account was deleted
+            if ($user === null || is_suspended($user)) {
+                unset($_SESSION['user_id']); // account was deleted or suspended
+                $user = null;
             }
         }
     }
 
+    return $user;
+}
+
+function is_admin(?array $user): bool
+{
+    return ($user['role'] ?? 'student') === 'admin';
+}
+
+function is_suspended(?array $user): bool
+{
+    return ($user['status'] ?? 'active') === 'suspended';
+}
+
+/** Stop anyone who isn't a logged-in administrator. */
+function require_admin(): array
+{
+    $user = require_login();
+    if (!is_admin($user)) {
+        json_response(['ok' => false, 'message' => 'Only administrators can do that.', 'code' => 'not_admin'], 403);
+    }
     return $user;
 }
 
