@@ -1,0 +1,557 @@
+/* =========================================================
+   CAMPUS MARKETPLACE
+   DESKTOP LAYOUT
+
+   Loaded last on every page, so these rules win over the
+   older page styles. Everything is inside min-width media
+   queries: phones keep the mobile layout unchanged.
+
+   769px+   sidebar navigation, centered content column,
+            product grids, centered dialogs
+   900px+   split-screen login
+   1100px+  wider grids on Home
+========================================================= */
+
+:root {
+    --desktop-content: 1200px;
+}
+
+
+@media (min-width: 769px) {
+
+    /* =====================================================
+       CONTENT COLUMN
+       Keeps lines and cards a readable size on wide screens
+       instead of stretching edge to edge.
+    ====================================================== */
+
+    .app:not(.post-app) > header,
+    .app:not(.post-app) > section,
+    .app:not(.post-app) > main {
+        width: 100%;
+        max-width: var(--desktop-content);
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+
+    /* =====================================================
+       HOME
+    ====================================================== */
+
+    /* The sidebar already shows the logo. */
+    .topbar {
+        justify-content: flex-end !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .topbar .brand {
+        display: none !important;
+    }
+
+    .hero {
+        padding-top: 8px;
+    }
+
+    /* Carousel arrows sit over the photos, not over the item names. */
+    .featured-section .carousel-arrow {
+        top: 34%;
+    }
+
+    /* Cards in a row line up even when one name wraps to two lines. */
+    .featured-section .product-grid {
+        align-items: stretch;
+    }
+
+
+    /* =====================================================
+       MARKETPLACE
+    ====================================================== */
+
+    .top-header {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Wrap the category chips so none are cut off on narrower screens. */
+    .category-list {
+        flex-wrap: wrap !important;
+    }
+
+    .product-list {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        padding-top: 6px;
+    }
+
+    .product-list .product-card {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: #ffffff;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .product-list .product-card:hover {
+        transform: translateY(-3px);
+        border-color: #d5dff0;
+        box-shadow: 0 12px 28px rgba(16, 24, 40, 0.08);
+        background: #ffffff;
+    }
+
+    .product-list .product-image-wrap {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-radius: 0;
+    }
+
+    .product-list .product-info {
+        padding: 14px 16px 16px;
+    }
+
+    .product-list .product-name {
+        font-size: 16px;
+    }
+
+    .product-list .product-price {
+        font-size: 19px;
+    }
+
+
+    /* Filters, cart and item details: centered dialogs, not phone bottom sheets. */
+    .overlay {
+        align-items: center !important;
+        padding: 32px !important;
+    }
+
+    .bottom-sheet,
+    .cart-sheet {
+        max-width: 500px !important;
+        max-height: calc(100vh - 64px) !important;
+        padding: 22px 24px 26px !important;
+        border-radius: 22px !important;
+        box-shadow: 0 24px 70px rgba(16, 24, 40, 0.22);
+    }
+
+    .sheet-handle {
+        display: none !important;
+    }
+
+    .product-modal {
+        max-width: 920px !important;
+        max-height: calc(100vh - 64px) !important;
+        border-radius: 22px !important;
+        box-shadow: 0 24px 70px rgba(16, 24, 40, 0.22);
+    }
+
+    /* Photo fills the left half; the details set the height. */
+    #productDetails {
+        position: relative;
+        min-height: 460px;
+        padding-left: 52%;
+    }
+
+    #productDetails .details-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 52%;
+        height: 100%;
+    }
+
+    #productDetails .details-content {
+        padding: 40px 32px 32px;
+    }
+
+
+    /* =====================================================
+       FAVORITES
+    ====================================================== */
+
+    .favorite-list {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+        gap: 20px !important;
+    }
+
+    .favorite-card {
+        position: relative;
+        display: flex !important;
+        flex-direction: column;
+        gap: 0 !important;
+        padding: 0 !important;
+        overflow: hidden;
+        border: 1px solid var(--border) !important;
+        border-radius: 16px;
+        background: #ffffff;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .favorite-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(16, 24, 40, 0.08);
+    }
+
+    .favorite-image-wrap {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 4 / 3;
+        border-radius: 0 !important;
+    }
+
+    .favorite-info {
+        padding: 14px 16px 16px;
+    }
+
+    .favorite-name {
+        font-size: 15px !important;
+    }
+
+    .favorite-price {
+        font-size: 18px !important;
+    }
+
+    .favorite-meta {
+        font-size: 12px !important;
+    }
+
+    .status,
+    .saved-date {
+        font-size: 11px !important;
+    }
+
+    .remove-favorite {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 34px !important;
+        height: 34px !important;
+        background: rgba(255, 255, 255, 0.94) !important;
+        color: #d64545 !important;
+        box-shadow: 0 2px 8px rgba(16, 24, 40, 0.12);
+    }
+
+    .privacy-card h3 {
+        font-size: 14px;
+    }
+
+    .privacy-card p {
+        font-size: 12px;
+    }
+
+
+    /* =====================================================
+       PROFILE
+       Edit Profile gets its own row so long details never
+       run underneath it.
+    ====================================================== */
+
+    .identity-card {
+        flex-wrap: wrap;
+    }
+
+    .identity-card .edit-profile-button {
+        position: static;
+        margin-left: auto;
+    }
+
+}
+
+
+/* Profile: the name card and verification card stack until
+   there is room for both side by side. */
+@media (min-width: 769px) and (max-width: 1199px) {
+
+    .identity-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP (769px – 1099px)
+========================================================= */
+
+@media (min-width: 769px) and (max-width: 1099px) {
+
+    /* Photo boxes are small here: keep "Add Photo" inside the first one. */
+    .add-photo-slot {
+        padding: 10px !important;
+    }
+
+    .add-photo-slot .camera-icon svg {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .add-photo-slot .add-photo-text {
+        font-size: 12px !important;
+    }
+
+}
+
+
+/* =========================================================
+   HOME — wide screens
+   (script.js shows 4 featured items per page from 1100px)
+========================================================= */
+
+@media (min-width: 1100px) {
+
+    .category-grid {
+        grid-template-columns: repeat(9, minmax(0, 1fr)) !important;
+    }
+
+    .featured-section .product-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    }
+
+}
+
+
+/* =========================================================
+   LOGIN — split screen
+   Brand and illustration on the left, the form on the
+   right, sized to fit a laptop screen without scrolling.
+========================================================= */
+
+@media (min-width: 900px) {
+
+    body:has(.login-page) {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px !important;
+        background:
+            radial-gradient(circle at 15% 20%, #e3edff 0, transparent 45%),
+            #f3f5f9;
+    }
+
+    .login-page {
+        position: relative;
+        width: 100%;
+        max-width: 1100px !important;
+        min-height: 0 !important;
+        border-radius: 28px !important;
+        overflow: hidden;
+        box-shadow: 0 24px 70px rgba(16, 24, 40, 0.12) !important;
+    }
+
+    .login-page main {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .login-page .top-bar {
+        position: absolute;
+        top: 18px;
+        left: 18px;
+        z-index: 2;
+        width: auto;
+        height: auto;
+        padding: 0;
+    }
+
+    .login-page .back-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .login-page .back-button svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .login-page .brand-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 64px 48px;
+        background: linear-gradient(160deg, #f4f8ff 0%, #e8f0ff 100%);
+        border-right: 1px solid #e4eaf5;
+    }
+
+    .login-page .graduation-svg {
+        width: 340px;
+    }
+
+    .login-page .auth-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 48px 56px;
+    }
+
+    .login-page .auth-tabs {
+        height: 54px;
+        margin-bottom: 24px;
+    }
+
+    .login-page .auth-tab {
+        font-size: 18px;
+    }
+
+    .login-page .input-group {
+        min-height: 58px;
+        margin-bottom: 14px;
+        border-radius: 14px;
+    }
+
+    .login-page .input-group input {
+        height: 56px;
+        font-size: 16px;
+    }
+
+    .login-page .input-icon {
+        width: 54px;
+        min-width: 54px;
+    }
+
+    .login-page .input-icon svg,
+    .login-page .password-toggle svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .login-page .password-toggle {
+        width: 52px;
+        min-width: 52px;
+    }
+
+    .login-page .forgot-row {
+        margin-bottom: 18px;
+    }
+
+    .login-page .forgot-button {
+        font-size: 14px;
+    }
+
+    .login-page .primary-button {
+        min-height: 54px;
+        border-radius: 14px;
+        font-size: 17px;
+    }
+
+    .login-page .security-card {
+        min-height: 0;
+        margin-top: 20px;
+        padding: 14px 16px;
+        border-radius: 14px;
+    }
+
+    .login-page .security-icon {
+        width: 40px;
+        min-width: 40px;
+    }
+
+    .login-page .security-icon svg {
+        width: 36px;
+        height: 40px;
+    }
+
+    .login-page .security-text {
+        font-size: 13px;
+    }
+
+    .login-page .toast {
+        bottom: 32px;
+    }
+
+}
+
+
+/* Short laptop screens (e.g. 1366 × 768): fit the whole login card. */
+@media (min-width: 900px) and (max-height: 760px) {
+
+    body:has(.login-page) {
+        padding: 16px 32px !important;
+    }
+
+    .login-page .auth-section {
+        padding: 26px 56px;
+    }
+
+    .login-page .graduation-svg {
+        width: 280px;
+    }
+
+    .login-page .auth-tabs {
+        height: 48px;
+        margin-bottom: 18px;
+    }
+
+    .login-page .input-group {
+        min-height: 52px;
+        margin-bottom: 12px;
+    }
+
+    .login-page .input-group input {
+        height: 50px;
+    }
+
+    .login-page .forgot-row {
+        margin-bottom: 12px;
+    }
+
+    .login-page .primary-button {
+        min-height: 50px;
+    }
+
+    .login-page .security-card {
+        margin-top: 12px;
+        padding: 10px 14px;
+    }
+
+}
+
+/* =========================================================
+   SAME FRAME ON EVERY PAGE
+   The header title and the three buttons sit at exactly the
+   same spot on every page, so nothing jumps when you switch
+   pages from the sidebar.
+   ========================================================= */
+@media (min-width: 769px) {
+  /* Keep room for the scrollbar on every page, so pages that
+     scroll and pages that don't line up the same. */
+  html { scrollbar-gutter: stable; }
+
+  .top-header,
+  .page-header,
+  .profile-header {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .profile-page {
+    --max: 1200px;
+    padding-left: 284px !important;
+    padding-right: 40px !important;
+  }
+
+  /* Search bars, panels and cards start exactly under the page
+     title (Marketplace, Favorites, Messages had a 16px inset). */
+  .search-section,
+  .categories-section,
+  .marketplace-content,
+  .app > .content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Post Item: same left edge and title spot as every other page. */
+  .post-app {
+    --max: 1200px;
+    padding-left: 284px !important;
+    padding-right: 40px !important;
+  }
+}

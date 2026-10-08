@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1457d9">
+  <title>Post Item | NORSU Campus Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/post-item.css?v=4">
+  <link rel="stylesheet" href="../css/nav.css?v=4">
+  <link rel="stylesheet" href="../css/desktop.css?v=4">
+  <script src="../js/auth.js?v=4" data-auth="required" data-auth-reason="post"></script>
+  <script src="../js/products.js?v=4"></script>
+  <script src="../js/post-item.js?v=4" defer></script>
+</head>
+<body>
+  <main class="app post-app">
+    <header class="post-header">
+      <h1>Post Item</h1>
+      <button class="preview-link" id="previewTop" type="button">Preview</button>
+    </header>
+
+    <section class="stepper" aria-label="Post item progress">
+      <div class="step active" data-step="1"><span>1</span><strong>Item Details</strong></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2"><span>2</span><strong>Photos</strong></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3"><span>3</span><strong>Additional Info</strong></div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4"><span>4</span><strong>Review</strong></div>
+    </section>
+
+    <form id="postForm" novalidate>
+      <section class="form-step active" data-panel="1">
+        <div class="section-heading"><h2>Photos</h2></div>
+        <div class="photo-strip" id="photoStrip">
+          <button class="photo-slot add-photo-slot" type="button" data-slot="0" aria-label="Add photo">
+            <span class="camera-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8.5h3l1.5-2h7L17 8.5h3v10H4v-10Z"></path><circle cx="12" cy="13.5" r="3.2"></circle></svg></span>
+            <span class="add-photo-text">Add Photo</span><span class="photo-plus">+</span>
+          </button>
+          <button class="photo-slot empty-photo" type="button" data-slot="1" aria-label="Add photo"><span>+</span></button>
+          <button class="photo-slot empty-photo" type="button" data-slot="2" aria-label="Add photo"><span>+</span></button>
+          <button class="photo-slot empty-photo" type="button" data-slot="3" aria-label="Add photo"><span>+</span></button>
+          <button class="photo-slot empty-photo desktop-extra" type="button" data-slot="4" aria-label="Add photo"><span>+</span></button>
+        </div>
+        <p class="helper">Add up to 5 photos. Your first photo will be the cover.</p>
+        <input id="photoInput" type="file" accept="image/*" multiple hidden>
+
+        <div class="field-grid two">
+          <label class="field full">
+            <span>Item Name</span>
+            <input id="itemName" name="itemName" type="text" maxlength="80" placeholder="e.g. Calculus Textbook" required>
+          </label>
+          <label class="field">
+            <span>Category</span>
+            <select id="category" name="category" required>
+              <option value="Books">📚 Books</option>
+              <option value="Electronics">▣ Electronics</option>
+              <option value="Uniforms">◒ Uniforms</option>
+              <option value="Supplies">▤ Supplies</option>
+              <option value="Calculators">▦ Calculators</option>
+              <option value="Sports">◍ Sports</option>
+              <option value="Furniture">▭ Furniture</option>
+              <option value="Accessories">◠ Accessories</option>
+              <option value="Others">••• Others</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Condition</span>
+            <select id="condition" name="condition" required>
+              <option value="New">New</option>
+              <option value="Like New">Like New</option>
+              <option value="Used - Good" selected>Used - Good</option>
+              <option value="Used - Fair">Used - Fair</option>
+            </select>
+          </label>
+          <label class="field full">
+            <span>Price</span>
+            <div class="input-prefix"><span>₱</span><input id="price" name="price" type="number" min="0" step="1" placeholder="0.00" required></div>
+          </label>
+          <label class="field full">
+            <span>Location</span>
+            <select id="location" name="location" required>
+              <option>Near Student Center</option>
+              <option>Near Library</option>
+              <option>Near Engineering</option>
+              <option>Near Gate 2</option>
+              <option>Near Gate 3</option>
+              <option>Other campus location</option>
+            </select>
+          </label>
+          <label class="field full">
+            <span>Description <em id="descriptionCount">0/500</em></span>
+            <textarea id="description" name="description" maxlength="500" rows="5" placeholder="Describe your item..."></textarea>
+          </label>
+        </div>
+
+        <fieldset class="delivery-choice">
+          <legend>Delivery / Meeting Option</legend>
+          <div class="choice-grid">
+            <button class="choice-card selected" type="button" data-fulfillment="meetup">
+              <span class="choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="2.7"></circle><circle cx="16.5" cy="9.5" r="2.2"></circle><path d="M3.5 19c.5-3.2 2.4-5 5.5-5s5 1.8 5.5 5M13 19c.4-2.5 2-4 4.5-4 2 0 3.3 1.2 3.7 4"></path></svg></span>
+              <span class="choice-copy"><strong>Meet in Person</strong><small>Meet at a safe campus location</small></span><span class="choice-check">✓</span>
+            </button>
+            <button class="choice-card" type="button" data-fulfillment="delivery">
+              <span class="choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h11v10H3zM14 10h4l3 3v3h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></span>
+              <span class="choice-copy"><strong>Delivery</strong><small>Ship or deliver to buyer</small></span><span class="choice-check"></span>
+            </button>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="form-step" data-panel="2">
+        <div class="section-heading"><h2>Add Photos</h2><p>Clear photos help buyers understand the item's condition.</p></div>
+        <div class="photo-manager" id="photoManager"></div>
+        <div class="upload-box" id="uploadBox">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5M8 9l4-4 4 4M5 15v3h14v-3"></path></svg>
+          <strong>Add more photos</strong><span>PNG, JPG or WEBP · up to 5 images</span>
+          <button type="button" class="outline-button" id="addMorePhotos">Choose Photos</button>
+        </div>
+        <div class="photo-tips"><strong>Photo tips</strong><span>Use good lighting, show the full item, and include close-ups of any wear or damage.</span></div>
+      </section>
+
+      <section class="form-step" data-panel="3">
+        <div class="section-heading"><h2>Additional Info</h2><p>Set the handoff details buyers will see with your listing.</p></div>
+        <div class="info-card selected-info" id="fulfillmentSummary"></div>
+
+        <div id="deliveryFields" class="detail-group hidden">
+          <h3>Delivery Details</h3>
+          <div class="field-grid two">
+            <label class="field"><span>Delivery Area</span><select id="deliveryArea"><option>Within campus</option><option>Campus + nearby area</option><option>Seller-defined area</option></select></label>
+            <label class="field"><span>Delivery Fee</span><div class="input-prefix"><span>₱</span><input id="deliveryFee" type="number" min="0" step="1" value="0"></div></label>
+            <label class="field full"><span>Who pays the delivery fee?</span><select id="deliveryPayer"><option value="buyer">Buyer pays</option><option value="seller">Seller pays</option><option value="included">Included in item price</option></select></label>
+            <label class="field full"><span>Delivery Notes</span><textarea id="deliveryNotes" maxlength="300" rows="4" placeholder="e.g. Delivery available after 4 PM on weekdays."></textarea></label>
+          </div>
+        </div>
+
+        <div id="meetupFields" class="detail-group">
+          <h3>Meet-up Details</h3>
+          <div class="field-grid two">
+            <label class="field full"><span>Preferred meeting location</span><select id="meetupLocation"><option>Near Student Center</option><option>Near Library</option><option>Near Engineering</option><option>Near Main Gate</option></select></label>
+            <label class="field"><span>Availability</span><select id="meetupAvailability"><option>Weekdays · 8 AM–5 PM</option><option>Weekdays · After 4 PM</option><option>Flexible</option></select></label>
+            <label class="field"><span>Safety preference</span><select id="meetupSafety"><option>Public campus location</option><option>Campus security area</option></select></label>
+          </div>
+        </div>
+
+        <div class="info-card"><span class="info-icon">i</span><div><strong>Privacy reminder</strong><p>Do not include your home address, personal phone number, passwords, or other sensitive information in your listing.</p></div></div>
+      </section>
+
+      <section class="form-step" data-panel="4">
+        <div class="section-heading"><h2>Review Listing</h2><p>Check the details before publishing your item.</p></div>
+        <div class="review-card">
+          <div class="review-cover" id="reviewCover"></div>
+          <div class="review-main"><h3 id="reviewName">—</h3><div class="review-price" id="reviewPrice">₱0</div><div class="review-meta" id="reviewMeta">—</div><p id="reviewDescription">No description.</p></div>
+        </div>
+        <div class="review-grid" id="reviewDetails"></div>
+        <div class="publish-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Once published, every student can see your item in the Marketplace and message you about it.</span></div>
+      </section>
+
+      <div class="form-actions">
+        <button class="secondary-button hidden" id="backStep" type="button">Back</button>
+        <button class="primary-button" id="nextStep" type="button">Next: Add Photos</button>
+      </div>
+    </form>
+
+    <div class="success-overlay hidden" id="successOverlay" role="dialog" aria-modal="true">
+      <div class="success-card">
+        <div class="success-icon">✓</div><h2>Item Posted!</h2><p>Your listing has been saved. Buyers can now find it in the Marketplace.</p>
+        <div class="success-actions"><button class="primary-button" id="viewMarketplace" type="button">View Marketplace</button><button class="secondary-button" id="postAnother" type="button">Post Another Item</button></div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-brand" aria-label="NORSU Campus Marketplace"><span class="nav-brand-campus">NORSU CAMPUS</span><span class="nav-brand-marketplace">MARKETPLACE</span></div>
+      <button class="nav-item" data-nav="home" data-page="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg><span>Home</span></button>
+      <button class="nav-item" data-nav="marketplace" data-page="marketplace" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg><span>Marketplace</span></button>
+      <button class="sell-button active" data-nav="post" id="sellButton" type="button" aria-label="Post an item"><span class="sell-plus">+</span><span class="sell-label">Post an Item</span></button>
+      <button class="nav-item" data-nav="favorites" data-page="favorites" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg><span>Favorites</span></button>
+      <button class="nav-item" data-nav="messages" data-page="messages" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>Messages</span></button>
+      <button class="nav-item" data-nav="profile" data-page="profile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg><span>Profile</span></button>
+      <div class="nav-footer">
+        <div class="nav-footer-links">
+          <a href="../about/about.html">About</a><a href="../map/map.html">Campus Tour</a><a href="../terms/terms.html">Terms and Conditions</a>
+        </div>
+        <p class="nav-footer-note">Not affiliated with NORSU.</p>
+      </div>
+    </nav>
+  </main>
+</body>
+</html>

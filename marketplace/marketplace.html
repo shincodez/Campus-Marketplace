@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>Marketplace | NORSU Campus Marketplace</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/marketplace.css?v=4">
+    <script src="../js/auth.js?v=4"></script>
+    <script src="../js/header.js?v=4"></script>
+    <script src="../js/products.js?v=4"></script>
+    <script src="../js/marketplace.js?v=4" defer></script>
+    <link rel="stylesheet" href="../css/nav.css?v=4">
+    <link rel="stylesheet" href="../css/desktop.css?v=4">
+    <link rel="stylesheet" href="../css/header.css?v=4">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             TOP HEADER
+        ========================== -->
+        <header class="top-header">
+
+            <h1 class="page-title">Marketplace</h1>
+
+            <div class="hdr-actions" data-header-actions>
+                <button class="hdr-button" type="button" data-header="notifications" aria-label="Notifications" aria-haspopup="dialog" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+                    <span class="hdr-dot" hidden></span>
+                </button>
+                <button class="hdr-button" id="cartButton" type="button" data-header="cart" data-cart="page" aria-label="Cart">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"></path><circle cx="10" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+                    <span class="hdr-badge" id="cartCount">0</span>
+                </button>
+                <button class="hdr-button" type="button" data-header="profile" aria-label="Profile" aria-haspopup="dialog" aria-expanded="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.7-4 3.2-6 7-6s6.3 2 7 6"></path></svg>
+                </button>
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             SEARCH
+        ========================== -->
+        <section class="search-section">
+
+            <div class="search-row">
+
+                <div class="search-box">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-4-4"></path>
+                    </svg>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search items..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        class="clear-search"
+                        id="clearSearch"
+                        type="button"
+                        aria-label="Clear search"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <button
+                    class="filter-button"
+                    id="filterButton"
+                    type="button"
+                    aria-label="Filters"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 6h16M7 12h10M10 18h4"></path>
+                        <circle cx="8" cy="6" r="1.5"></circle>
+                        <circle cx="16" cy="12" r="1.5"></circle>
+                        <circle cx="12" cy="18" r="1.5"></circle>
+                    </svg>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CATEGORY SCROLLER
+        ========================== -->
+        <section class="categories-section">
+
+            <div class="category-list" id="categoryList">
+
+                <button class="category-item active" data-category="All">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg></span>
+                    <span>All</span>
+                </button>
+
+                <button class="category-item" data-category="Books">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
+                    <span>Books</span>
+                </button>
+
+                <button class="category-item" data-category="Electronics">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg></span>
+                    <span>Electronics</span>
+                </button>
+
+                <button class="category-item" data-category="Uniforms">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg></span>
+                    <span>Uniforms</span>
+                </button>
+
+                <button class="category-item" data-category="Supplies">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/><path d="m8 6 2-2"/><path d="m18 16 2-2"/><path d="m17 11 4.3 4.3c.94.94.94 2.46 0 3.4l-2.6 2.6c-.94.94-2.46.94-3.4 0L11 17"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg></span>
+                    <span>Supplies</span>
+                </button>
+
+                <button class="category-item" data-category="More">
+                    <span class="category-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></span>
+                    <span>More</span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             POPULAR ITEMS
+        ========================== -->
+        <main class="marketplace-content">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Popular Items</h2>
+                    <span id="resultsCount">6 items</span>
+                </div>
+
+                <button id="viewAllButton" type="button">
+                    View all
+                </button>
+
+            </div>
+
+
+            <!-- Product list -->
+            <section
+                class="product-list"
+                id="productList"
+                aria-live="polite"
+            ></section>
+
+
+            <!-- Empty state -->
+            <section
+                class="empty-state hidden"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path d="m20 20-4-4"></path>
+                    </svg>
+                </div>
+
+                <h3>No items found</h3>
+
+                <p>
+                    Try a different search or category.
+                </p>
+
+                <button
+                    class="primary-button"
+                    id="resetButton"
+                    type="button"
+                >
+                    Clear filters
+                </button>
+
+            </section>
+
+        </main>
+
+
+        <!-- =========================
+             BOTTOM NAVIGATION
+        ========================== -->
+        <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-brand" aria-label="NORSU Campus Marketplace">
+        <span class="nav-brand-campus">NORSU CAMPUS</span>
+        <span class="nav-brand-marketplace">MARKETPLACE</span>
+      </div>
+      <button class="nav-item" data-nav="home" data-page="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg><span>Home</span></button>
+      <button class="nav-item active" data-nav="marketplace" data-page="marketplace" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg><span>Marketplace</span></button>
+      <button class="sell-button" data-nav="post" id="sellButton" type="button" aria-label="Post an item"><span class="sell-plus">+</span><span class="sell-label">Post an Item</span></button>
+      <button class="nav-item" data-nav="favorites" data-page="favorites" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg><span>Favorites</span></button>
+      <button class="nav-item" data-nav="messages" data-page="messages" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>Messages</span></button>
+      <button class="nav-item" data-nav="profile" data-page="profile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg><span>Profile</span></button>
+      <div class="nav-footer">
+        <div class="nav-footer-links">
+          <a href="../about/about.html">About</a><a href="../map/map.html">Campus Tour</a><a href="../terms/terms.html">Terms and Conditions</a>
+        </div>
+        <p class="nav-footer-note">Not affiliated with NORSU.</p>
+      </div>
+    </nav>
+
+
+        <!-- =========================
+             FILTER MODAL
+        ========================== -->
+        <div class="overlay hidden" id="filterOverlay">
+
+            <div
+                class="bottom-sheet"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="filterTitle"
+            >
+
+                <div class="sheet-handle"></div>
+
+                <div class="sheet-header">
+                    <h2 id="filterTitle">Filter & Sort</h2>
+
+                    <button
+                        id="closeFilter"
+                        type="button"
+                        aria-label="Close filters"
+                    >
+                        ×
+                    </button>
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label>Condition</label>
+
+                    <div class="filter-options">
+
+                        <button
+                            class="filter-chip active"
+                            data-condition="All"
+                            type="button"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            class="filter-chip"
+                            data-condition="New"
+                            type="button"
+                        >
+                            New
+                        </button>
+
+                        <button
+                            class="filter-chip"
+                            data-condition="Used"
+                            type="button"
+                        >
+                            Used
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="filter-group">
+
+                    <label for="sortSelect">
+                        Sort by
+                    </label>
+
+                    <select id="sortSelect">
+                        <option value="popular">Most viewed</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest</option>
+                    </select>
+
+                </div>
+
+
+                <div class="sheet-actions">
+
+                    <button
+                        class="secondary-button"
+                        id="clearFilters"
+                        type="button"
+                    >
+                        Reset
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        id="applyFilters"
+                        type="button"
+                    >
+                        Apply filters
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PRODUCT DETAILS MODAL
+        ========================== -->
+        <div class="overlay hidden" id="productOverlay">
+
+            <div
+                class="product-modal"
+                role="dialog"
+                aria-modal="true"
+            >
+
+                <button
+                    class="modal-close"
+                    id="closeProduct"
+                    type="button"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+                <div id="productDetails"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CART DRAWER
+        ========================== -->
+        <div class="overlay hidden" id="cartOverlay">
+
+            <div class="cart-sheet">
+
+                <div class="sheet-handle"></div>
+
+                <div class="sheet-header">
+
+                    <h2>Your Cart</h2>
+
+                    <button
+                        id="closeCart"
+                        type="button"
+                        aria-label="Close cart"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <div id="cartContent"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TOAST
+        ========================== -->
+        <div
+            class="toast"
+            id="toast"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+
+    </div>
+
+</body>
+</html>

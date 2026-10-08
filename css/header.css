@@ -1,0 +1,407 @@
+/* =========================================================
+   NORSU CAMPUS MARKETPLACE
+   HEADER BUTTONS — notifications, cart, profile
+   Shared by Home, Marketplace, Favorites and Messages
+   (behaviour in header.js).
+   ========================================================= */
+
+.hdr-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.hdr-button {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid #e2e6ed;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #111827;
+    cursor: pointer;
+    transition: background 160ms ease, border-color 160ms ease;
+}
+
+.hdr-button:hover {
+    border-color: #c9d3e3;
+    background: #f8faff;
+}
+
+.hdr-button:focus-visible {
+    outline: 3px solid rgba(20, 87, 217, 0.2);
+    outline-offset: 2px;
+}
+
+.hdr-button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Red dot on the bell = unread messages. */
+.hdr-dot {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 9px;
+    height: 9px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: #ef4444;
+}
+
+.hdr-dot[hidden] { display: none !important; }
+
+/* Number of items in the cart. */
+.hdr-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    display: grid;
+    place-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    background: #1457d9;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.hdr-badge[hidden] { display: none !important; }
+
+@media (max-width: 700px) {
+    .hdr-actions { gap: 7px; }
+
+    .hdr-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .hdr-button svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+
+/* =========================================================
+   DROPDOWN PANELS
+   ========================================================= */
+
+.hdr-panel {
+    position: fixed;
+    z-index: 1200;
+    width: min(360px, calc(100vw - 32px));
+    overflow: hidden;
+    border: 1px solid #e2e6ed;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 16px 40px rgba(16, 24, 40, 0.14);
+    color: #111827;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    text-align: left;
+    animation: hdrPanelIn 160ms ease both;
+}
+
+@keyframes hdrPanelIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hdr-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 18px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.hdr-panel-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 750;
+}
+
+.hdr-panel-close {
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    background: #f8fafc;
+    color: #667085;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.hdr-panel-body { padding: 14px; }
+
+/* Notifications */
+.hdr-note {
+    width: 100%;
+    display: flex;
+    gap: 11px;
+    padding: 12px;
+    border: 0;
+    border-radius: 12px;
+    background: #f8fafc;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+}
+
+button.hdr-note { cursor: pointer; }
+button.hdr-note:hover { background: #eef4ff; }
+
+.hdr-note + .hdr-note { margin-top: 8px; }
+
+.hdr-note-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: #edf3ff;
+    color: #1457d9;
+}
+
+.hdr-note-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hdr-note strong {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 13px;
+}
+
+.hdr-note span {
+    display: block;
+    color: #667085;
+    font-size: 11px;
+    line-height: 1.35;
+}
+
+/* Profile */
+.hdr-profile { padding: 18px; }
+
+.hdr-profile-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hdr-avatar {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #edf3ff;
+    color: #1457d9;
+    font-weight: 800;
+}
+
+.hdr-profile-name {
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.hdr-profile-status {
+    margin-top: 3px;
+    color: #16803c;
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.hdr-profile-status.guest { color: #667085; }
+
+.hdr-menu {
+    display: grid;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.hdr-menu-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 12px;
+    border: 1px solid #e2e6ed;
+    border-radius: 11px;
+    background: #ffffff;
+    color: #111827;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.hdr-menu-item:hover { background: #f8fafc; }
+
+.hdr-menu-item svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: #1457d9;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.hdr-menu-item.danger { color: #d92d20; }
+.hdr-menu-item.danger svg { stroke: currentColor; }
+
+@media (prefers-reduced-motion: reduce) {
+    .hdr-panel { animation: none; }
+    .hdr-button { transition: none; }
+}
+
+
+/* =========================================================
+   PAGE HEADERS — same as Home on every page
+   Title on the left, the three buttons on the right
+   (Marketplace, Favorites, Messages, Profile).
+   ========================================================= */
+
+.top-header,
+.page-header,
+.profile-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px;
+    height: auto !important;
+    min-height: 72px !important;
+    border-bottom: 0 !important;
+    background: #ffffff;
+}
+
+.top-header .page-title,
+.page-header h1,
+.profile-header h1 {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0 !important;
+    overflow: hidden;
+    color: #101828;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    text-align: left !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.top-header .hdr-actions,
+.page-header .hdr-actions,
+.profile-header .hdr-actions {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 700px) {
+    .top-header,
+    .page-header,
+    .profile-header {
+        min-height: 64px !important;
+    }
+}
+
+/* Small phones: slightly smaller titles. */
+@media (max-width: 360px) {
+    .top-header .page-title,
+    .page-header h1,
+    .profile-header h1 {
+        font-size: 21px !important;
+    }
+
+    .top-header,
+    .page-header {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+}
+
+
+/* Profile menu footer (phones): About, Campus Tour, Terms on one line, then the note, centered. */
+.hdr-panel-footer {
+    padding: 12px 18px 16px;
+    border-top: 1px solid #edf0f4;
+    color: #667085;
+    font-size: 12px;
+    text-align: center;
+}
+
+.hdr-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 6px 18px;
+    line-height: 1.4;
+}
+
+.hdr-footer-links a {
+    color: #667085;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.hdr-footer-links a:hover {
+    color: #1457d9;
+    text-decoration: underline;
+}
+
+.hdr-panel-footer p {
+    margin: 8px 0 0;
+    font-size: 11.5px;
+}
+
+/* Small phones: a little smaller so the three links still fit on one line. */
+@media (max-width: 360px) {
+    .hdr-panel-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .hdr-footer-links {
+        column-gap: 12px;
+        font-size: 11.5px;
+    }
+}
+
+/* Desktop: these links are already at the bottom of the sidebar. */
+@media (min-width: 769px) {
+    .hdr-panel-footer {
+        display: none;
+    }
+}

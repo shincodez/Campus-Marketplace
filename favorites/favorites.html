@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1457d9">
+  <title>Favorites | NORSU Campus Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/favorites.css?v=4">
+  <script src="../js/auth.js?v=4" data-auth="required" data-auth-reason="favorites"></script>
+  <script src="../js/header.js?v=4"></script>
+  <script src="../js/products.js?v=4"></script>
+  <script src="../js/favorites.js?v=4" defer></script>
+    <link rel="stylesheet" href="../css/nav.css?v=4">
+    <link rel="stylesheet" href="../css/desktop.css?v=4">
+    <link rel="stylesheet" href="../css/header.css?v=4">
+</head>
+<body>
+  <main class="app">
+    <header class="page-header">
+      <h1>Favorites</h1>
+      <div class="hdr-actions" data-header-actions>
+          <button class="hdr-button" type="button" data-header="notifications" aria-label="Notifications" aria-haspopup="dialog" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+              <span class="hdr-dot" hidden></span>
+          </button>
+          <button class="hdr-button" type="button" data-header="cart" aria-label="Cart">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"></path><circle cx="10" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
+              <span class="hdr-badge" hidden>0</span>
+          </button>
+          <button class="hdr-button" type="button" data-header="profile" aria-label="Profile" aria-haspopup="dialog" aria-expanded="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c.7-4 3.2-6 7-6s6.3 2 7 6"></path></svg>
+          </button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
+        <input id="favoriteSearch" type="search" placeholder="Search favorites..." autocomplete="off">
+        <button id="clearSearch" class="clear-search" type="button" aria-label="Clear search">×</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Favorite item status">
+        <button class="tab active" data-tab="all" role="tab">All Items</button>
+        <button class="tab" data-tab="sale" role="tab">For Sale</button>
+        <button class="tab" data-tab="sold" role="tab">Sold</button>
+      </div>
+
+      <div class="result-row">
+        <h2>Saved Items</h2>
+        <span id="resultCount">0 items</span>
+      </div>
+
+      <section id="favoriteList" class="favorite-list" aria-live="polite"></section>
+
+      <section id="emptyState" class="empty-state hidden">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.8 8.6c0 5.4-8.8 11-8.8 11S3.2 14 3.2 8.6A4.6 4.6 0 0 1 12 6a4.6 4.6 0 0 1 8.8 2.6Z"></path></svg>
+        </div>
+        <h2>No saved items</h2>
+        <p>Items you save will appear here.</p>
+        <button class="primary-button" id="browseButton">Browse Marketplace</button>
+      </section>
+
+      <section class="privacy-card">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.2 8.4-8 10-4.8-1.6-8-5-8-10V6l8-3Z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        </div>
+        <div>
+          <h3>Your favorites are private</h3>
+          <p>Only you can see the items you save.</p>
+        </div>
+      </section>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-brand" aria-label="NORSU Campus Marketplace">
+        <span class="nav-brand-campus">NORSU CAMPUS</span>
+        <span class="nav-brand-marketplace">MARKETPLACE</span>
+      </div>
+      <button class="nav-item" data-nav="home" data-page="home" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10.5 12 3.5l8.5 7"></path><path d="M5.5 9.5V20h13V9.5"></path><path d="M9.5 20v-6h5v6"></path></svg><span>Home</span></button>
+      <button class="nav-item" data-nav="marketplace" data-page="marketplace" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14l1 11H4L5 9Z"></path><path d="M8 9V6.5a4 4 0 0 1 8 0V9"></path></svg><span>Marketplace</span></button>
+      <button class="sell-button" data-nav="post" id="sellButton" type="button" aria-label="Post an item"><span class="sell-plus">+</span><span class="sell-label">Post an Item</span></button>
+      <button class="nav-item active" data-nav="favorites" data-page="favorites" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 8.7c0 5.1-8.2 10.5-8.2 10.5S3.8 13.8 3.8 8.7A4.8 4.8 0 0 1 12 6.2a4.8 4.8 0 0 1 8.2 2.5Z"></path></svg><span>Favorites</span></button>
+      <button class="nav-item" data-nav="messages" data-page="messages" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>Messages</span></button>
+      <button class="nav-item" data-nav="profile" data-page="profile" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"></circle><path d="M4.5 20.5c.8-4.3 3.3-6.8 7.5-6.8s6.7 2.5 7.5 6.8"></path></svg><span>Profile</span></button>
+      <div class="nav-footer">
+        <div class="nav-footer-links">
+          <a href="../about/about.html">About</a><a href="../map/map.html">Campus Tour</a><a href="../terms/terms.html">Terms and Conditions</a>
+        </div>
+        <p class="nav-footer-note">Not affiliated with NORSU.</p>
+      </div>
+    </nav>
+
+    <div class="toast" id="toast" role="status"></div>
+  </main>
+</body>
+</html>

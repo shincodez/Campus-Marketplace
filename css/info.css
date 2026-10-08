@@ -1,0 +1,222 @@
+/* =========================================================
+   NORSU CAMPUS MARKETPLACE — ABOUT, CAMPUS MAP, TERMS
+   Same page shell as Favorites / Messages.
+   ========================================================= */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #1457d9;
+  --blue-dark: #0e43ad;
+  --blue-light: #edf4ff;
+  --text: #101828;
+  --muted: #667085;
+  --border: #e4e7ec;
+  --surface: #f8fafc;
+  --nav: 76px;
+}
+
+body {
+  min-height: 100vh;
+  background: #eef1f6;
+  color: var(--text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font: inherit; border: 0; background: none; cursor: pointer; color: inherit; }
+a { color: var(--blue); }
+
+.app {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  background: #fff;
+  padding-bottom: calc(var(--nav) + env(safe-area-inset-bottom) + 16px);
+}
+
+.page-header {
+  padding: 0 16px;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.content { padding: 8px 16px 16px; }
+
+
+/* ---------- Text pages (About, Terms) ---------- */
+
+.info-lead {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.info-card {
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.info-card h2 {
+  margin-bottom: 8px;
+  font-size: 17px;
+  letter-spacing: -.2px;
+}
+
+.info-card p,
+.info-card li {
+  color: #475467;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.info-card p + p { margin-top: 8px; }
+
+.info-card ul,
+.info-card ol {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+  padding-left: 20px;
+}
+
+.info-steps {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.info-step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px;
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.info-step-icon {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+.info-step-icon svg,
+.info-button svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.info-step strong { display: block; font-size: 14px; }
+.info-step span { display: block; margin-top: 3px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+.info-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border: 1px solid #f3d9a4;
+  border-radius: 14px;
+  background: #fff8eb;
+  color: #7a4b00;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.info-updated { margin-top: 6px; color: var(--muted); font-size: 12px; }
+
+.info-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.info-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  border: 1px solid var(--blue);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.info-button.primary { background: var(--blue); color: #fff; }
+.info-button:hover { background: var(--blue-light); }
+.info-button.primary:hover { background: var(--blue-dark); }
+
+
+/* ---------- Campus Tour (map only) ----------
+   The map comes from norsu.top. info.js shifts their own sidebar
+   (wide screens) or top bar (phones) outside this frame. */
+
+.map-frame {
+  position: relative;
+  height: calc(100vh - 64px - var(--nav) - 56px);
+  height: calc(100dvh - 64px - var(--nav) - 56px);
+  min-height: 380px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.map-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+.map-credit {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 769px) {
+  body { background: #f4f6fa; }
+
+  .app {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 40px 40px 284px !important;
+  }
+
+  .page-header { padding: 0; }
+  .content { padding: 8px 0 0; }
+  .info-card { padding: 26px 28px; }
+  .info-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .map-frame {
+    height: calc(100vh - 72px - 64px);
+    min-height: 480px;
+  }
+}
